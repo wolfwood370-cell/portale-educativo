@@ -2,10 +2,15 @@ import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CourseViewerLayout, { type Lesson } from "@/components/CourseViewerLayout";
 import { CourseThemeProvider, type ThemeColor } from "@/lib/course-theme";
-import { BookOpen, Clock } from "lucide-react";
+import { Clock, GraduationCap, ExternalLink, Calculator } from "lucide-react";
+import { rpeLessons, rpeLessonContent } from "@/data/rpe-course-data";
+import RpeCalculator from "@/components/course/RpeCalculator";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { themeClasses } from "@/lib/course-theme";
 
-// Mock course data
-const coursesData: Record<
+// Non-RPE courses keep mock data
+const otherCoursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
 > = {
@@ -19,20 +24,6 @@ const coursesData: Record<
       { id: "l4", title: "Meal Planning Pratico", duration: "10 min", completed: false },
       { id: "l5", title: "Timing dei Pasti", duration: "9 min", completed: false },
       { id: "l6", title: "Errori Comuni da Evitare", duration: "7 min", completed: false },
-    ],
-  },
-  "rpe-mastery": {
-    title: "Corso RPE — La Guida Definitiva",
-    themeColor: "sky",
-    lessons: [
-      { id: "l1", title: "Cos'è l'RPE?", duration: "6 min", completed: true },
-      { id: "l2", title: "La Scala RPE vs RIR", duration: "10 min", completed: true },
-      { id: "l3", title: "Autoregolazione in Pratica", duration: "14 min", completed: true },
-      { id: "l4", title: "RPE per la Forza", duration: "12 min", completed: false },
-      { id: "l5", title: "RPE per l'Ipertrofia", duration: "11 min", completed: false },
-      { id: "l6", title: "Periodizzazione con RPE", duration: "15 min", completed: false },
-      { id: "l7", title: "Errori Comuni", duration: "8 min", completed: false },
-      { id: "l8", title: "Programma Finale", duration: "13 min", completed: false },
     ],
   },
   integratori: {
@@ -58,14 +49,28 @@ const coursesData: Record<
   },
 };
 
+// Build full courses map including RPE
+const coursesData: Record<
+  string,
+  { title: string; themeColor: ThemeColor; lessons: Lesson[] }
+> = {
+  ...otherCoursesData,
+  "rpe-mastery": {
+    title: "Corso RPE — La Guida Definitiva",
+    themeColor: "sky",
+    lessons: rpeLessons,
+  },
+};
+
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const course = coursesData[id || ""];
+  const isRpeCourse = id === "rpe-mastery";
 
   const [lessons, setLessons] = useState<Lesson[]>(course?.lessons || []);
+  const [showCalculator, setShowCalculator] = useState(false);
 
-  // Find first incomplete lesson as default active
   const defaultActive = useMemo(
     () => lessons.find((l) => !l.completed)?.id || lessons[0]?.id || "l1",
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,10 +83,7 @@ const CoursePage = () => {
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center space-y-3">
           <h1 className="text-2xl font-bold text-foreground">Course not found</h1>
-          <button
-            className="text-sm text-primary underline"
-            onClick={() => navigate("/")}
-          >
+          <button className="text-sm text-primary underline" onClick={() => navigate("/")}>
             Back to Dashboard
           </button>
         </div>
@@ -99,15 +101,17 @@ const CoursePage = () => {
   };
 
   const handleContinue = () => {
-    // Mark current as completed
     setLessons((prev) =>
       prev.map((l) => (l.id === activeLessonId ? { ...l, completed: true } : l))
     );
-    // Move to next
     if (activeIdx < lessons.length - 1) {
       setActiveLessonId(lessons[activeIdx + 1].id);
     }
   };
+
+  // Get real RPE content if available
+  const rpeContent = isRpeCourse ? rpeLessonContent[activeLessonId] : null;
+  const tc = themeClasses[course.themeColor];
 
   return (
     <CourseThemeProvider themeColor={course.themeColor}>
@@ -122,67 +126,104 @@ const CoursePage = () => {
         isFirstLesson={activeIdx === 0}
         isLastLesson={activeIdx === lessons.length - 1}
       >
-        {/* Mock lesson content */}
         <article className="space-y-8">
+          {/* Lesson Header */}
           <header className="space-y-3">
-            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-              Lesson {activeIdx + 1} of {lessons.length}
-            </p>
-            <h1 className="text-3xl font-bold tracking-tight text-foreground">
+            <span className="inline-block px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 font-bold text-xs tracking-widest uppercase shadow-sm border border-sky-500/20">
+              Lezione {activeIdx + 1}
+            </span>
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               {activeLesson?.title}
             </h1>
+            {rpeContent && (
+              <p className="text-xl text-muted-foreground font-light tracking-wide">
+                {rpeContent.subtitle}
+              </p>
+            )}
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5" />
                 {activeLesson?.duration}
               </span>
-              <span className="flex items-center gap-1.5">
-                <BookOpen className="h-3.5 w-3.5" />
-                Reading
-              </span>
+              {isRpeCourse && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-sky-500/30 text-sky-400 hover:bg-sky-500/10 hover:text-sky-300"
+                  onClick={() => setShowCalculator(true)}
+                >
+                  <Calculator className="h-3.5 w-3.5 mr-1.5" />
+                  Calcolatore RPE
+                </Button>
+              )}
             </div>
           </header>
 
-          {/* Placeholder video area */}
-          <div className="aspect-video rounded-xl bg-secondary/50 border border-border/50 flex items-center justify-center">
-            <div className="text-center text-muted-foreground space-y-2">
-              <div className="mx-auto h-12 w-12 rounded-full bg-muted flex items-center justify-center">
-                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <p className="text-sm">Video content placeholder</p>
+          {/* Lesson Content */}
+          {rpeContent ? (
+            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border/50">
+              {rpeContent.content}
             </div>
-          </div>
+          ) : (
+            /* Fallback for non-RPE courses */
+            <div className="prose prose-invert prose-sm max-w-none space-y-4">
+              <p className="text-foreground/80 leading-relaxed">
+                Questa lezione copre i concetti fondamentali che devi conoscere per progredire nel tuo
+                percorso di allenamento. Segui con attenzione ogni passaggio e prendi appunti per
+                massimizzare il tuo apprendimento.
+              </p>
+              <h2 className="text-lg font-semibold text-foreground mt-8">Punti Chiave</h2>
+              <ul className="space-y-2 text-foreground/70">
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
+                  Comprendere i principi base è essenziale prima di passare ai concetti avanzati.
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
+                  L'applicazione pratica richiede costanza e pazienza.
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
+                  Ogni concetto si costruisce sul precedente — non saltare le lezioni.
+                </li>
+              </ul>
+            </div>
+          )}
 
-          {/* Mock text content */}
-          <div className="prose prose-invert prose-sm max-w-none space-y-4">
-            <p className="text-foreground/80 leading-relaxed">
-              Questa lezione copre i concetti fondamentali che devi conoscere per progredire nel tuo
-              percorso di allenamento. Segui con attenzione ogni passaggio e prendi appunti per
-              massimizzare il tuo apprendimento.
-            </p>
-            <h2 className="text-lg font-semibold text-foreground mt-8">Punti Chiave</h2>
-            <ul className="space-y-2 text-foreground/70">
-              <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
-                Comprendere i principi base è essenziale prima di passare ai concetti avanzati.
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
-                L'applicazione pratica richiede costanza e pazienza.
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
-                Ogni concetto si costruisce sul precedente — non saltare le lezioni.
-              </li>
-            </ul>
-            <blockquote className="border-l-2 border-muted-foreground/20 pl-4 italic text-muted-foreground">
-              "La chiave del progresso non è la perfezione, ma la consistenza nel tempo."
-            </blockquote>
-          </div>
+          {/* Scientific References */}
+          {rpeContent?.insights && rpeContent.insights.length > 0 && (
+            <div className="mt-16 pt-8 border-t-2 border-border/30">
+              <h4 className="flex items-center text-xs font-bold text-sky-400 uppercase tracking-widest mb-6">
+                <GraduationCap className="w-4 h-4 mr-2" /> RIFERIMENTI SCIENTIFICI
+              </h4>
+              <ul className="grid grid-cols-1 gap-3">
+                {rpeContent.insights.map((insight, i) => (
+                  <li
+                    key={i}
+                    className="text-sm text-muted-foreground font-mono leading-relaxed bg-card p-4 rounded-lg border border-border/50 shadow-sm flex items-start"
+                  >
+                    <ExternalLink className="w-3 h-3 text-sky-400 mr-3 mt-1 flex-shrink-0" />
+                    <span>
+                      {insight.text}{" "}
+                      <a
+                        href={insight.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sky-400 hover:underline ml-1"
+                      >
+                        [Link]
+                      </a>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </article>
       </CourseViewerLayout>
+
+      {/* RPE Calculator Modal */}
+      {showCalculator && <RpeCalculator onClose={() => setShowCalculator(false)} />}
     </CourseThemeProvider>
   );
 };
