@@ -11,6 +11,7 @@ import RpeCalculator from "@/components/course/RpeCalculator";
 import PortionCalculator from "@/components/course/PortionCalculator";
 import { CelluliteStageQuiz } from "@/components/course/CelluliteComponents";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 // Non-content courses keep mock data
 const otherCoursesData: Record<
