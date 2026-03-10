@@ -2,5 +2,11 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-console.log("[DEBUG] main.tsx loaded, mounting React app");
-createRoot(document.getElementById("root")!).render(<App />);
+console.log("[DEBUG] main.tsx loaded, mounting React app", Date.now());
+
+const rootEl = document.getElementById("root");
+if (rootEl) {
+  createRoot(rootEl).render(<App />);
+} else {
+  console.error("[FATAL] #root element not found");
+}
