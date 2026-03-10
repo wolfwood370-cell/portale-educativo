@@ -54,6 +54,8 @@ const coursesData: Record<
 const courseContentMap: Record<string, Record<string, { subtitle: string; content: React.ReactNode; insights: { text: string; url: string }[] }>> = {
   "rpe-mastery": rpeLessonContent,
   "cosa-devo-mangiare": nutritionLessonContent,
+  integratori: integratoriLessonContent,
+};
 };
 
 // Calculator config per course
