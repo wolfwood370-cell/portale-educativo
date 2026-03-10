@@ -5,6 +5,7 @@ import { CourseThemeProvider, type ThemeColor, themeClasses } from "@/lib/course
 import { Clock, GraduationCap, ExternalLink, Calculator, Utensils } from "lucide-react";
 import { rpeLessons, rpeLessonContent } from "@/data/rpe-course-data";
 import { nutritionLessons, nutritionLessonContent } from "@/data/nutrition-course-data";
+import { integratoriLessons, integratoriLessonContent } from "@/data/integratori-course-data";
 import RpeCalculator from "@/components/course/RpeCalculator";
 import PortionCalculator from "@/components/course/PortionCalculator";
 import { Button } from "@/components/ui/button";
