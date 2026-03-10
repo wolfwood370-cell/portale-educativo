@@ -228,6 +228,9 @@ const CoursePage = () => {
       {showCalculator && id === "cosa-devo-mangiare" && (
         <PortionCalculator onClose={() => setShowCalculator(false)} />
       )}
+      {showCalculator && id === "cellulite-mini-corso" && (
+        <CelluliteStageQuiz onClose={() => setShowCalculator(false)} />
+      )}
     </CourseThemeProvider>
   );
 };
