@@ -61,13 +61,35 @@ const courseCalculators: Record<string, { icon: React.ElementType; label: string
   "cellulite-mini-corso": { icon: ClipboardCheck, label: "Test Autovalutazione" },
 };
 
+const getStorageKey = (courseId: string) => `course-progress-${courseId}`;
+
+const loadLessons = (courseId: string, defaults: Lesson[]): Lesson[] => {
+  try {
+    const saved = localStorage.getItem(getStorageKey(courseId));
+    if (saved) {
+      const completedIds: string[] = JSON.parse(saved);
+      return defaults.map((l) => ({ ...l, completed: completedIds.includes(l.id) }));
+    }
+  } catch { /* ignore */ }
+  return defaults.map((l) => ({ ...l }));
+};
+
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const course = coursesData[id || ""];
 
-  const [lessons, setLessons] = useState<Lesson[]>(course?.lessons || []);
+  const [lessons, setLessons] = useState<Lesson[]>(() =>
+    course ? loadLessons(id!, course.lessons) : []
+  );
   const [showCalculator, setShowCalculator] = useState(false);
+
+  // Bug 1: Persist progress to localStorage
+  useEffect(() => {
+    if (!id || !course) return;
+    const completedIds = lessons.filter((l) => l.completed).map((l) => l.id);
+    localStorage.setItem(getStorageKey(id), JSON.stringify(completedIds));
+  }, [lessons, id, course]);
 
   const defaultActive = useMemo(
     () => lessons.find((l) => !l.completed)?.id || lessons[0]?.id || "l1",
