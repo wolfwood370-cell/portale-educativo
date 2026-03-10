@@ -2,12 +2,14 @@ import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CourseViewerLayout, { type Lesson } from "@/components/CourseViewerLayout";
 import { CourseThemeProvider, type ThemeColor, themeClasses } from "@/lib/course-theme";
-import { Clock, GraduationCap, ExternalLink, Calculator, Utensils } from "lucide-react";
+import { Clock, GraduationCap, ExternalLink, Calculator, Utensils, ClipboardCheck } from "lucide-react";
 import { rpeLessons, rpeLessonContent } from "@/data/rpe-course-data";
 import { nutritionLessons, nutritionLessonContent } from "@/data/nutrition-course-data";
 import { integratoriLessons, integratoriLessonContent } from "@/data/integratori-course-data";
+import { celluliteLessons, celluliteLessonContent } from "@/data/cellulite-course-data";
 import RpeCalculator from "@/components/course/RpeCalculator";
 import PortionCalculator from "@/components/course/PortionCalculator";
+import { CelluliteStageQuiz } from "@/components/course/CelluliteComponents";
 import { Button } from "@/components/ui/button";
 
 // Non-content courses keep mock data
