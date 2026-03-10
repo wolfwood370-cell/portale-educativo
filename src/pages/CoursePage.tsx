@@ -2,30 +2,21 @@ import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CourseViewerLayout, { type Lesson } from "@/components/CourseViewerLayout";
 import { CourseThemeProvider, type ThemeColor, themeClasses } from "@/lib/course-theme";
-import { Clock, GraduationCap, ExternalLink, Calculator, Utensils } from "lucide-react";
+import { Clock, GraduationCap, ExternalLink, Calculator, Utensils, ClipboardCheck } from "lucide-react";
 import { rpeLessons, rpeLessonContent } from "@/data/rpe-course-data";
 import { nutritionLessons, nutritionLessonContent } from "@/data/nutrition-course-data";
 import { integratoriLessons, integratoriLessonContent } from "@/data/integratori-course-data";
+import { celluliteLessons, celluliteLessonContent } from "@/data/cellulite-course-data";
 import RpeCalculator from "@/components/course/RpeCalculator";
 import PortionCalculator from "@/components/course/PortionCalculator";
+import { CelluliteStageQuiz } from "@/components/course/CelluliteComponents";
 import { Button } from "@/components/ui/button";
 
 // Non-content courses keep mock data
 const otherCoursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
-> = {
-  "cellulite-mini-corso": {
-    title: "Cellulite — Il Mini Corso",
-    themeColor: "rose",
-    lessons: [
-      { id: "l1", title: "Cos'è la Cellulite?", duration: "8 min", completed: true },
-      { id: "l2", title: "Cause e Fattori", duration: "10 min", completed: true },
-      { id: "l3", title: "Strategie di Allenamento", duration: "12 min", completed: true },
-      { id: "l4", title: "Nutrizione e Stile di Vita", duration: "9 min", completed: true },
-    ],
-  },
-};
+> = {};
 
 // Full courses map
 const coursesData: Record<
@@ -48,6 +39,11 @@ const coursesData: Record<
     themeColor: "violet",
     lessons: integratoriLessons,
   },
+  "cellulite-mini-corso": {
+    title: "Cellulite — Il Mini Corso",
+    themeColor: "rose",
+    lessons: celluliteLessons,
+  },
 };
 
 // Content lookup per course
@@ -55,12 +51,14 @@ const courseContentMap: Record<string, Record<string, { subtitle: string; conten
   "rpe-mastery": rpeLessonContent,
   "cosa-devo-mangiare": nutritionLessonContent,
   integratori: integratoriLessonContent,
+  "cellulite-mini-corso": celluliteLessonContent,
 };
 
 // Calculator config per course
 const courseCalculators: Record<string, { icon: React.ElementType; label: string }> = {
   "rpe-mastery": { icon: Calculator, label: "Calcolatore RPE" },
   "cosa-devo-mangiare": { icon: Utensils, label: "Calcola Porzioni" },
+  "cellulite-mini-corso": { icon: ClipboardCheck, label: "Test Autovalutazione" },
 };
 
 const CoursePage = () => {
@@ -229,6 +227,9 @@ const CoursePage = () => {
       )}
       {showCalculator && id === "cosa-devo-mangiare" && (
         <PortionCalculator onClose={() => setShowCalculator(false)} />
+      )}
+      {showCalculator && id === "cellulite-mini-corso" && (
+        <CelluliteStageQuiz onClose={() => setShowCalculator(false)} />
       )}
     </CourseThemeProvider>
   );
