@@ -1,31 +1,19 @@
 import { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CourseViewerLayout, { type Lesson } from "@/components/CourseViewerLayout";
-import { CourseThemeProvider, type ThemeColor } from "@/lib/course-theme";
-import { Clock, GraduationCap, ExternalLink, Calculator } from "lucide-react";
+import { CourseThemeProvider, type ThemeColor, themeClasses } from "@/lib/course-theme";
+import { Clock, GraduationCap, ExternalLink, Calculator, Utensils } from "lucide-react";
 import { rpeLessons, rpeLessonContent } from "@/data/rpe-course-data";
+import { nutritionLessons, nutritionLessonContent } from "@/data/nutrition-course-data";
 import RpeCalculator from "@/components/course/RpeCalculator";
+import PortionCalculator from "@/components/course/PortionCalculator";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { themeClasses } from "@/lib/course-theme";
 
-// Non-RPE courses keep mock data
+// Non-content courses keep mock data
 const otherCoursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
 > = {
-  "cosa-devo-mangiare": {
-    title: "Cosa Devo Mangiare?",
-    themeColor: "emerald",
-    lessons: [
-      { id: "l1", title: "Introduzione alla Nutrizione", duration: "8 min", completed: true },
-      { id: "l2", title: "Macronutrienti Essenziali", duration: "12 min", completed: true },
-      { id: "l3", title: "Come Calcolare il Fabbisogno", duration: "15 min", completed: false },
-      { id: "l4", title: "Meal Planning Pratico", duration: "10 min", completed: false },
-      { id: "l5", title: "Timing dei Pasti", duration: "9 min", completed: false },
-      { id: "l6", title: "Errori Comuni da Evitare", duration: "7 min", completed: false },
-    ],
-  },
   integratori: {
     title: "Quali integratori usare?",
     themeColor: "violet",
@@ -49,7 +37,7 @@ const otherCoursesData: Record<
   },
 };
 
-// Build full courses map including RPE
+// Full courses map
 const coursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
@@ -60,13 +48,29 @@ const coursesData: Record<
     themeColor: "sky",
     lessons: rpeLessons,
   },
+  "cosa-devo-mangiare": {
+    title: "Cosa Devo Mangiare?",
+    themeColor: "emerald",
+    lessons: nutritionLessons,
+  },
+};
+
+// Content lookup per course
+const courseContentMap: Record<string, Record<string, { subtitle: string; content: React.ReactNode; insights: { text: string; url: string }[] }>> = {
+  "rpe-mastery": rpeLessonContent,
+  "cosa-devo-mangiare": nutritionLessonContent,
+};
+
+// Calculator config per course
+const courseCalculators: Record<string, { icon: React.ElementType; label: string }> = {
+  "rpe-mastery": { icon: Calculator, label: "Calcolatore RPE" },
+  "cosa-devo-mangiare": { icon: Utensils, label: "Calcola Porzioni" },
 };
 
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const course = coursesData[id || ""];
-  const isRpeCourse = id === "rpe-mastery";
 
   const [lessons, setLessons] = useState<Lesson[]>(course?.lessons || []);
   const [showCalculator, setShowCalculator] = useState(false);
@@ -109,8 +113,10 @@ const CoursePage = () => {
     }
   };
 
-  // Get real RPE content if available
-  const rpeContent = isRpeCourse ? rpeLessonContent[activeLessonId] : null;
+  // Get real content if available
+  const contentMap = courseContentMap[id || ""];
+  const lessonContent = contentMap?.[activeLessonId];
+  const calcConfig = courseCalculators[id || ""];
   const tc = themeClasses[course.themeColor];
 
   return (
@@ -129,15 +135,15 @@ const CoursePage = () => {
         <article className="space-y-8">
           {/* Lesson Header */}
           <header className="space-y-3">
-            <span className="inline-block px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 font-bold text-xs tracking-widest uppercase shadow-sm border border-sky-500/20">
+            <span className={`inline-block px-3 py-1 rounded-full ${tc.bgSubtle} ${tc.text} font-bold text-xs tracking-widest uppercase shadow-sm border ${tc.border}`}>
               Lezione {activeIdx + 1}
             </span>
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               {activeLesson?.title}
             </h1>
-            {rpeContent && (
+            {lessonContent && (
               <p className="text-xl text-muted-foreground font-light tracking-wide">
-                {rpeContent.subtitle}
+                {lessonContent.subtitle}
               </p>
             )}
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -145,27 +151,26 @@ const CoursePage = () => {
                 <Clock className="h-3.5 w-3.5" />
                 {activeLesson?.duration}
               </span>
-              {isRpeCourse && (
+              {calcConfig && (
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-sky-500/30 text-sky-400 hover:bg-sky-500/10 hover:text-sky-300"
+                  className={`border-border/50 ${tc.text} hover:${tc.bgSubtle}`}
                   onClick={() => setShowCalculator(true)}
                 >
-                  <Calculator className="h-3.5 w-3.5 mr-1.5" />
-                  Calcolatore RPE
+                  <calcConfig.icon className="h-3.5 w-3.5 mr-1.5" />
+                  {calcConfig.label}
                 </Button>
               )}
             </div>
           </header>
 
           {/* Lesson Content */}
-          {rpeContent ? (
+          {lessonContent ? (
             <div className="bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border/50">
-              {rpeContent.content}
+              {lessonContent.content}
             </div>
           ) : (
-            /* Fallback for non-RPE courses */
             <div className="prose prose-invert prose-sm max-w-none space-y-4">
               <p className="text-foreground/80 leading-relaxed">
                 Questa lezione copre i concetti fondamentali che devi conoscere per progredire nel tuo
@@ -191,25 +196,25 @@ const CoursePage = () => {
           )}
 
           {/* Scientific References */}
-          {rpeContent?.insights && rpeContent.insights.length > 0 && (
+          {lessonContent?.insights && lessonContent.insights.length > 0 && (
             <div className="mt-16 pt-8 border-t-2 border-border/30">
-              <h4 className="flex items-center text-xs font-bold text-sky-400 uppercase tracking-widest mb-6">
+              <h4 className={`flex items-center text-xs font-bold ${tc.text} uppercase tracking-widest mb-6`}>
                 <GraduationCap className="w-4 h-4 mr-2" /> RIFERIMENTI SCIENTIFICI
               </h4>
               <ul className="grid grid-cols-1 gap-3">
-                {rpeContent.insights.map((insight, i) => (
+                {lessonContent.insights.map((insight, i) => (
                   <li
                     key={i}
                     className="text-sm text-muted-foreground font-mono leading-relaxed bg-card p-4 rounded-lg border border-border/50 shadow-sm flex items-start"
                   >
-                    <ExternalLink className="w-3 h-3 text-sky-400 mr-3 mt-1 flex-shrink-0" />
+                    <ExternalLink className={`w-3 h-3 ${tc.text} mr-3 mt-1 flex-shrink-0`} />
                     <span>
                       {insight.text}{" "}
                       <a
                         href={insight.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sky-400 hover:underline ml-1"
+                        className={`${tc.text} hover:underline ml-1`}
                       >
                         [Link]
                       </a>
@@ -222,8 +227,13 @@ const CoursePage = () => {
         </article>
       </CourseViewerLayout>
 
-      {/* RPE Calculator Modal */}
-      {showCalculator && <RpeCalculator onClose={() => setShowCalculator(false)} />}
+      {/* Calculators */}
+      {showCalculator && id === "rpe-mastery" && (
+        <RpeCalculator onClose={() => setShowCalculator(false)} />
+      )}
+      {showCalculator && id === "cosa-devo-mangiare" && (
+        <PortionCalculator onClose={() => setShowCalculator(false)} />
+      )}
     </CourseThemeProvider>
   );
 };
