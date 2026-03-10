@@ -15,17 +15,17 @@ const otherCoursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
 > = {
-  integratori: {
-    title: "Quali integratori usare?",
-    themeColor: "violet",
+  "cellulite-mini-corso": {
+    title: "Cellulite — Il Mini Corso",
+    themeColor: "rose",
     lessons: [
-      { id: "l1", title: "Il Mondo degli Integratori", duration: "7 min", completed: false },
-      { id: "l2", title: "Creatina — La Base", duration: "11 min", completed: false },
-      { id: "l3", title: "Proteine in Polvere", duration: "9 min", completed: false },
-      { id: "l4", title: "Vitamine e Minerali", duration: "10 min", completed: false },
-      { id: "l5", title: "Cosa Evitare", duration: "6 min", completed: false },
+      { id: "l1", title: "Cos'è la Cellulite?", duration: "8 min", completed: true },
+      { id: "l2", title: "Cause e Fattori", duration: "10 min", completed: true },
+      { id: "l3", title: "Strategie di Allenamento", duration: "12 min", completed: true },
+      { id: "l4", title: "Nutrizione e Stile di Vita", duration: "9 min", completed: true },
     ],
   },
+};
   "cellulite-mini-corso": {
     title: "Cellulite — Il Mini Corso",
     themeColor: "rose",
