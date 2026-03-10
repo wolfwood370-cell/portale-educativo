@@ -191,7 +191,7 @@ const CourseViewerLayout = ({
         </header>
 
         {/* Lesson content */}
-        <main className="flex-1 overflow-y-auto">
+        <main ref={mainRef} className="flex-1 overflow-y-auto">
           <div className="mx-auto max-w-3xl px-6 py-10 md:px-12 md:py-14">
             {children}
           </div>
