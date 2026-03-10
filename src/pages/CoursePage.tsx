@@ -16,18 +16,7 @@ import { Button } from "@/components/ui/button";
 const otherCoursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
-> = {
-  "cellulite-mini-corso": {
-    title: "Cellulite — Il Mini Corso",
-    themeColor: "rose",
-    lessons: [
-      { id: "l1", title: "Cos'è la Cellulite?", duration: "8 min", completed: true },
-      { id: "l2", title: "Cause e Fattori", duration: "10 min", completed: true },
-      { id: "l3", title: "Strategie di Allenamento", duration: "12 min", completed: true },
-      { id: "l4", title: "Nutrizione e Stile di Vita", duration: "9 min", completed: true },
-    ],
-  },
-};
+> = {};
 
 // Full courses map
 const coursesData: Record<
