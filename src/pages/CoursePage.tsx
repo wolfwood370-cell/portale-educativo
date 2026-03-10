@@ -5,6 +5,7 @@ import { CourseThemeProvider, type ThemeColor, themeClasses } from "@/lib/course
 import { Clock, GraduationCap, ExternalLink, Calculator, Utensils } from "lucide-react";
 import { rpeLessons, rpeLessonContent } from "@/data/rpe-course-data";
 import { nutritionLessons, nutritionLessonContent } from "@/data/nutrition-course-data";
+import { integratoriLessons, integratoriLessonContent } from "@/data/integratori-course-data";
 import RpeCalculator from "@/components/course/RpeCalculator";
 import PortionCalculator from "@/components/course/PortionCalculator";
 import { Button } from "@/components/ui/button";
@@ -14,17 +15,6 @@ const otherCoursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
 > = {
-  integratori: {
-    title: "Quali integratori usare?",
-    themeColor: "violet",
-    lessons: [
-      { id: "l1", title: "Il Mondo degli Integratori", duration: "7 min", completed: false },
-      { id: "l2", title: "Creatina — La Base", duration: "11 min", completed: false },
-      { id: "l3", title: "Proteine in Polvere", duration: "9 min", completed: false },
-      { id: "l4", title: "Vitamine e Minerali", duration: "10 min", completed: false },
-      { id: "l5", title: "Cosa Evitare", duration: "6 min", completed: false },
-    ],
-  },
   "cellulite-mini-corso": {
     title: "Cellulite — Il Mini Corso",
     themeColor: "rose",
@@ -53,12 +43,18 @@ const coursesData: Record<
     themeColor: "emerald",
     lessons: nutritionLessons,
   },
+  integratori: {
+    title: "Quali integratori usare?",
+    themeColor: "violet",
+    lessons: integratoriLessons,
+  },
 };
 
 // Content lookup per course
 const courseContentMap: Record<string, Record<string, { subtitle: string; content: React.ReactNode; insights: { text: string; url: string }[] }>> = {
   "rpe-mastery": rpeLessonContent,
   "cosa-devo-mangiare": nutritionLessonContent,
+  integratori: integratoriLessonContent,
 };
 
 // Calculator config per course
