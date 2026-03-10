@@ -171,7 +171,7 @@ const CoursePage = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className={`border-border/50 ${tc.text} hover:${tc.bgSubtle}`}
+                  className={cn("border-border/50", tc.text, tc.hoverBgSubtle)}
                   onClick={() => setShowCalculator(true)}
                 >
                   <calcConfig.icon className="h-3.5 w-3.5 mr-1.5" />
