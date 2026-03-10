@@ -123,6 +123,12 @@ const CourseViewerLayout = ({
   const { themeColor } = useCourseTheme();
   const tc = themeClasses[themeColor];
   const navigate = useNavigate();
+  const mainRef = useRef<HTMLElement>(null);
+
+  // Bug 3: Scroll to top on lesson change
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeLessonId]);
 
   const sidebarProps = {
     courseTitle,

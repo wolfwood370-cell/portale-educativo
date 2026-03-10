@@ -29,6 +29,7 @@ export const themeClasses = {
   emerald: {
     bg: "bg-emerald-500",
     bgSubtle: "bg-emerald-500/10",
+    hoverBgSubtle: "hover:bg-emerald-500/10",
     bgHover: "hover:bg-emerald-600",
     text: "text-emerald-400",
     border: "border-emerald-500/20",
@@ -40,6 +41,7 @@ export const themeClasses = {
   sky: {
     bg: "bg-sky-500",
     bgSubtle: "bg-sky-500/10",
+    hoverBgSubtle: "hover:bg-sky-500/10",
     bgHover: "hover:bg-sky-600",
     text: "text-sky-400",
     border: "border-sky-500/20",
@@ -51,6 +53,7 @@ export const themeClasses = {
   violet: {
     bg: "bg-violet-500",
     bgSubtle: "bg-violet-500/10",
+    hoverBgSubtle: "hover:bg-violet-500/10",
     bgHover: "hover:bg-violet-600",
     text: "text-violet-400",
     border: "border-violet-500/20",
@@ -62,6 +65,7 @@ export const themeClasses = {
   rose: {
     bg: "bg-rose-500",
     bgSubtle: "bg-rose-500/10",
+    hoverBgSubtle: "hover:bg-rose-500/10",
     bgHover: "hover:bg-rose-600",
     text: "text-rose-400",
     border: "border-rose-500/20",
