@@ -39,6 +39,11 @@ const coursesData: Record<
     themeColor: "violet",
     lessons: integratoriLessons,
   },
+  "cellulite-mini-corso": {
+    title: "Cellulite — Il Mini Corso",
+    themeColor: "rose",
+    lessons: celluliteLessons,
+  },
 };
 
 // Content lookup per course
@@ -46,12 +51,14 @@ const courseContentMap: Record<string, Record<string, { subtitle: string; conten
   "rpe-mastery": rpeLessonContent,
   "cosa-devo-mangiare": nutritionLessonContent,
   integratori: integratoriLessonContent,
+  "cellulite-mini-corso": celluliteLessonContent,
 };
 
 // Calculator config per course
 const courseCalculators: Record<string, { icon: React.ElementType; label: string }> = {
   "rpe-mastery": { icon: Calculator, label: "Calcolatore RPE" },
   "cosa-devo-mangiare": { icon: Utensils, label: "Calcola Porzioni" },
+  "cellulite-mini-corso": { icon: ClipboardCheck, label: "Test Autovalutazione" },
 };
 
 const CoursePage = () => {
