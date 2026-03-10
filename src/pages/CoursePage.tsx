@@ -56,7 +56,6 @@ const courseContentMap: Record<string, Record<string, { subtitle: string; conten
   "cosa-devo-mangiare": nutritionLessonContent,
   integratori: integratoriLessonContent,
 };
-};
 
 // Calculator config per course
 const courseCalculators: Record<string, { icon: React.ElementType; label: string }> = {
