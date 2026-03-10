@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CourseViewerLayout, { type Lesson } from "@/components/CourseViewerLayout";
 import { CourseThemeProvider, type ThemeColor, themeClasses } from "@/lib/course-theme";
@@ -11,6 +11,7 @@ import RpeCalculator from "@/components/course/RpeCalculator";
 import PortionCalculator from "@/components/course/PortionCalculator";
 import { CelluliteStageQuiz } from "@/components/course/CelluliteComponents";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 // Non-content courses keep mock data
 const otherCoursesData: Record<
@@ -61,13 +62,35 @@ const courseCalculators: Record<string, { icon: React.ElementType; label: string
   "cellulite-mini-corso": { icon: ClipboardCheck, label: "Test Autovalutazione" },
 };
 
+const getStorageKey = (courseId: string) => `course-progress-${courseId}`;
+
+const loadLessons = (courseId: string, defaults: Lesson[]): Lesson[] => {
+  try {
+    const saved = localStorage.getItem(getStorageKey(courseId));
+    if (saved) {
+      const completedIds: string[] = JSON.parse(saved);
+      return defaults.map((l) => ({ ...l, completed: completedIds.includes(l.id) }));
+    }
+  } catch { /* ignore */ }
+  return defaults.map((l) => ({ ...l }));
+};
+
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const course = coursesData[id || ""];
 
-  const [lessons, setLessons] = useState<Lesson[]>(course?.lessons || []);
+  const [lessons, setLessons] = useState<Lesson[]>(() =>
+    course ? loadLessons(id!, course.lessons) : []
+  );
   const [showCalculator, setShowCalculator] = useState(false);
+
+  // Bug 1: Persist progress to localStorage
+  useEffect(() => {
+    if (!id || !course) return;
+    const completedIds = lessons.filter((l) => l.completed).map((l) => l.id);
+    localStorage.setItem(getStorageKey(id), JSON.stringify(completedIds));
+  }, [lessons, id, course]);
 
   const defaultActive = useMemo(
     () => lessons.find((l) => !l.completed)?.id || lessons[0]?.id || "l1",
@@ -149,7 +172,7 @@ const CoursePage = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className={`border-border/50 ${tc.text} hover:${tc.bgSubtle}`}
+                  className={cn("border-border/50", tc.text, tc.hoverBgSubtle)}
                   onClick={() => setShowCalculator(true)}
                 >
                   <calcConfig.icon className="h-3.5 w-3.5 mr-1.5" />

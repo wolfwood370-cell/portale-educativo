@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Check, Circle, Menu, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -123,6 +123,12 @@ const CourseViewerLayout = ({
   const { themeColor } = useCourseTheme();
   const tc = themeClasses[themeColor];
   const navigate = useNavigate();
+  const mainRef = useRef<HTMLElement>(null);
+
+  // Bug 3: Scroll to top on lesson change
+  useEffect(() => {
+    mainRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeLessonId]);
 
   const sidebarProps = {
     courseTitle,
@@ -191,7 +197,7 @@ const CourseViewerLayout = ({
         </header>
 
         {/* Lesson content */}
-        <main className="flex-1 overflow-y-auto">
+        <main ref={mainRef} className="flex-1 overflow-y-auto">
           <div className="mx-auto max-w-3xl px-6 py-10 md:px-12 md:py-14">
             {children}
           </div>
