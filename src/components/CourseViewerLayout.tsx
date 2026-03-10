@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Circle, Menu, X, ArrowLeft } from "lucide-react";
+import { Check, Circle, Menu, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useCourseTheme, themeClasses } from "@/lib/course-theme";
