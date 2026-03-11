@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -27,18 +27,31 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [userRole, setUserRole] = useState<AppRole>("student");
   const [loading, setLoading] = useState(true);
 
-  const fetchRole = async (userId: string) => {
+  const fetchRole = useCallback(async (userId: string) => {
     const { data } = await supabase
       .from("user_roles")
       .select("role")
       .eq("user_id", userId);
-    // If user has multiple roles, prioritize 'coach'
     const roles = (data ?? []).map((r) => r.role);
     setUserRole(roles.includes("coach") ? "coach" : "student");
-  };
+  }, []);
 
   useEffect(() => {
-    // First, get the initial session
+    // Set up listener FIRST (Supabase best practice)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        if (session?.user) {
+          // Use setTimeout to avoid potential deadlocks with Supabase SDK
+          setTimeout(() => fetchRole(session.user.id), 0);
+        } else {
+          setUserRole("student");
+          setLoading(false);
+        }
+      }
+    );
+
+    // Then get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session?.user) {
@@ -48,24 +61,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
     });
 
-    // Then listen for changes — never await inside this callback
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-        if (session?.user) {
-          fetchRole(session.user.id);
-        } else {
-          setUserRole("student");
-        }
-      }
-    );
-
     return () => subscription.unsubscribe();
-  }, []);
+  }, [fetchRole]);
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
+    setLoading(true);
     await supabase.auth.signOut();
-  };
+    // State will be reset by onAuthStateChange listener
+  }, []);
 
   return (
     <AuthContext.Provider value={{ session, user: session?.user ?? null, userRole, loading, signOut }}>

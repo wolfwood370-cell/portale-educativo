@@ -1,28 +1,15 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Award, LogOut, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
-import { supabase } from "@/integrations/supabase/client";
 
 const DashboardHeader = () => {
-  const { user, signOut } = useAuth();
+  const { user, userRole, signOut } = useAuth();
   const navigate = useNavigate();
-  const initials = user?.email?.slice(0, 2).toUpperCase() || "??";
-  const [isCoach, setIsCoach] = useState(false);
-
-  useEffect(() => {
-    if (!user) return;
-    supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "coach")
-      .maybeSingle()
-      .then(({ data }) => setIsCoach(!!data));
-  }, [user]);
+  const displayName = user?.user_metadata?.display_name || user?.email?.split("@")[0] || "Utente";
+  const initials = displayName.slice(0, 2).toUpperCase();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl shadow-sm">
@@ -37,7 +24,7 @@ const DashboardHeader = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          {isCoach && (
+          {userRole === "coach" && (
             <Button
               variant="outline"
               size="sm"
@@ -50,7 +37,7 @@ const DashboardHeader = () => {
           )}
           <Badge className="border-primary/30 bg-primary/10 text-primary gap-1.5 px-3 py-1">
             <Award className="h-3.5 w-3.5" />
-            Atleta Avanzato
+            {userRole === "coach" ? "Coach" : "Atleta"}
           </Badge>
           <Avatar className="h-9 w-9 ring-2 ring-primary/30 ring-offset-2 ring-offset-background">
             <AvatarFallback className="bg-secondary text-secondary-foreground text-sm font-medium">
