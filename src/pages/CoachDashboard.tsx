@@ -193,7 +193,7 @@ const CoachDashboard = () => {
                       {/* Name + last active */}
                       <div className="min-w-0 flex-1 text-left">
                         <p className="font-semibold text-foreground truncate">{student.displayName}</p>
-                        <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5">
+                        <p className="text-xs text-muted-foreground truncate">{student.email}</p>
                           {student.lastActive ? (
                             <span className="flex items-center gap-1">
                               <Clock className="h-3 w-3" />
