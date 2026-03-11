@@ -86,9 +86,9 @@ const CoachDashboard = () => {
       }
 
       // Add profiles without progress (excluding self)
-      for (const [uid, name] of profileMap) {
+      for (const [uid, profile] of profileMap) {
         if (!userMap.has(uid) && uid !== user.id) {
-          userMap.set(uid, { userId: uid, displayName: name, courses: [], lastActive: null });
+          userMap.set(uid, { userId: uid, displayName: profile.name, email: profile.email, courses: [], lastActive: null });
         }
       }
 
