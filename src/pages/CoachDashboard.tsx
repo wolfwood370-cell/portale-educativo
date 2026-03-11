@@ -50,12 +50,12 @@ const CoachDashboard = () => {
       setIsCoach(true);
 
       const [{ data: profiles }, { data: progress }] = await Promise.all([
-        supabase.from("profiles").select("user_id, display_name"),
+        supabase.from("profiles").select("user_id, display_name, email"),
         supabase.from("user_progress").select("user_id, course_id, completed_lessons, updated_at"),
       ]);
 
       const profileMap = new Map(
-        (profiles || []).map((p) => [p.user_id, p.display_name || "Senza nome"])
+        (profiles || []).map((p) => [p.user_id, { name: p.display_name || "Senza nome", email: p.email || "Email sconosciuta" }])
       );
 
       const userMap = new Map<string, StudentRow>();
