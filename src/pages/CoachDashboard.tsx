@@ -4,22 +4,21 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { ArrowLeft, Users, BookOpen, Clock, ShieldCheck, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
 import { it } from "date-fns/locale";
-
-const COURSE_META: Record<string, { title: string; totalLessons: number; color: string }> = {
-  "rpe-mastery": { title: "Corso RPE", totalLessons: 8, color: "text-sky-500" },
-  "cosa-devo-mangiare": { title: "Cosa Devo Mangiare?", totalLessons: 6, color: "text-emerald-500" },
-  integratori: { title: "Integratori", totalLessons: 5, color: "text-violet-500" },
-  "cellulite-mini-corso": { title: "Cellulite", totalLessons: 4, color: "text-rose-500" },
-};
+import { COURSE_META } from "@/lib/course-metadata";
 
 interface StudentRow {
   userId: string;
   displayName: string;
-  email: string;
   courses: { courseId: string; completedCount: number; totalLessons: number; updatedAt: string }[];
   lastActive: string | null;
 }
@@ -35,7 +34,6 @@ const CoachDashboard = () => {
     if (!user) return;
 
     const load = async () => {
-      // Check coach role
       const { data: roleData } = await supabase
         .from("user_roles")
         .select("role")
@@ -50,7 +48,6 @@ const CoachDashboard = () => {
       }
       setIsCoach(true);
 
-      // Fetch all profiles and progress (coach RLS allows this)
       const [{ data: profiles }, { data: progress }] = await Promise.all([
         supabase.from("profiles").select("user_id, display_name"),
         supabase.from("user_progress").select("user_id, course_id, completed_lessons, updated_at"),
@@ -60,7 +57,6 @@ const CoachDashboard = () => {
         (profiles || []).map((p) => [p.user_id, p.display_name || "Senza nome"])
       );
 
-      // Group progress by user
       const userMap = new Map<string, StudentRow>();
 
       for (const row of progress || []) {
@@ -68,7 +64,6 @@ const CoachDashboard = () => {
           userMap.set(row.user_id, {
             userId: row.user_id,
             displayName: profileMap.get(row.user_id) || "Senza nome",
-            email: "",
             courses: [],
             lastActive: null,
           });
@@ -87,14 +82,13 @@ const CoachDashboard = () => {
         }
       }
 
-      // Also add profiles without progress
+      // Add profiles without progress (excluding self)
       for (const [uid, name] of profileMap) {
         if (!userMap.has(uid) && uid !== user.id) {
-          userMap.set(uid, { userId: uid, displayName: name, email: "", courses: [], lastActive: null });
+          userMap.set(uid, { userId: uid, displayName: name, courses: [], lastActive: null });
         }
       }
 
-      // Sort by last active desc, no activity last
       const sorted = Array.from(userMap.values()).sort((a, b) => {
         if (!a.lastActive && !b.lastActive) return 0;
         if (!a.lastActive) return 1;
@@ -167,31 +161,34 @@ const CoachDashboard = () => {
         </div>
       </header>
 
-      <main className="mx-auto max-w-7xl px-6 py-10 space-y-6">
+      <main className="mx-auto max-w-7xl px-6 py-10">
         {students.length === 0 ? (
           <div className="text-center py-20 text-muted-foreground">
             <Users className="mx-auto h-12 w-12 mb-4 opacity-40" />
             <p className="text-lg font-medium">Nessuno studente registrato ancora.</p>
           </div>
         ) : (
-          <div className="grid gap-4">
+          <Accordion type="multiple" className="space-y-3">
             {students.map((student) => {
               const overallCompleted = student.courses.reduce((s, c) => s + c.completedCount, 0);
               const overallTotal = student.courses.reduce((s, c) => s + c.totalLessons, 0);
               const overallPct = overallTotal > 0 ? Math.round((overallCompleted / overallTotal) * 100) : 0;
 
               return (
-                <div
+                <AccordionItem
                   key={student.userId}
-                  className="rounded-2xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-shadow"
+                  value={student.userId}
+                  className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden"
                 >
-                  <div className="flex flex-col md:flex-row md:items-center gap-4">
-                    {/* Avatar + Info */}
-                    <div className="flex items-center gap-4 flex-1 min-w-0">
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/30 transition-colors">
+                    <div className="flex flex-1 items-center gap-4 pr-4">
+                      {/* Avatar */}
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-sm">
                         {student.displayName.slice(0, 2).toUpperCase()}
                       </div>
-                      <div className="min-w-0">
+
+                      {/* Name + last active */}
+                      <div className="min-w-0 flex-1 text-left">
                         <p className="font-semibold text-foreground truncate">{student.displayName}</p>
                         <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5">
                           {student.lastActive ? (
@@ -204,41 +201,50 @@ const CoachDashboard = () => {
                           )}
                         </div>
                       </div>
-                    </div>
 
-                    {/* Overall progress */}
-                    <div className="flex items-center gap-3 md:w-48 shrink-0">
-                      <Progress value={overallPct} className="h-2 flex-1 bg-secondary" />
-                      <span className="text-sm font-semibold text-foreground w-10 text-right">{overallPct}%</span>
+                      {/* Overall progress */}
+                      <div className="hidden sm:flex items-center gap-3 w-48 shrink-0">
+                        <Progress value={overallPct} className="h-2 flex-1 bg-secondary" />
+                        <span className="text-sm font-semibold text-foreground w-10 text-right">{overallPct}%</span>
+                      </div>
                     </div>
-                  </div>
+                  </AccordionTrigger>
 
-                  {/* Course breakdown */}
-                  {student.courses.length > 0 && (
-                    <div className="mt-4 pt-4 border-t border-border/50 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                      {student.courses.map((c) => {
-                        const meta = COURSE_META[c.courseId];
-                        const pct = c.totalLessons > 0 ? Math.round((c.completedCount / c.totalLessons) * 100) : 0;
-                        return (
-                          <div key={c.courseId} className="flex items-center gap-3 rounded-lg bg-muted/50 px-3 py-2.5">
-                            <div className="flex-1 min-w-0">
-                              <p className={cn("text-xs font-semibold truncate", meta?.color || "text-foreground")}>
-                                {meta?.title || c.courseId}
-                              </p>
+                  <AccordionContent className="px-6 pb-5">
+                    {student.courses.length === 0 ? (
+                      <p className="text-sm text-muted-foreground py-2">
+                        Nessun corso iniziato.
+                      </p>
+                    ) : (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
+                        {student.courses.map((c) => {
+                          const meta = COURSE_META[c.courseId];
+                          const pct = c.totalLessons > 0 ? Math.round((c.completedCount / c.totalLessons) * 100) : 0;
+                          return (
+                            <div
+                              key={c.courseId}
+                              className="rounded-xl border border-border/50 bg-muted/30 p-4 space-y-2"
+                            >
+                              <div className="flex items-center justify-between">
+                                <p className={cn("text-sm font-semibold", meta?.colorClass || "text-foreground")}>
+                                  {meta?.title || c.courseId}
+                                </p>
+                                <span className="text-xs font-bold text-foreground">{pct}%</span>
+                              </div>
+                              <Progress value={pct} className="h-1.5 bg-secondary" />
                               <p className="text-[11px] text-muted-foreground">
-                                {c.completedCount}/{c.totalLessons} lezioni
+                                {c.completedCount} di {c.totalLessons} lezioni completate
                               </p>
                             </div>
-                            <span className="text-xs font-bold text-foreground">{pct}%</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
               );
             })}
-          </div>
+          </Accordion>
         )}
       </main>
     </div>
