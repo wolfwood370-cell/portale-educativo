@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import Dashboard from "./pages/Dashboard";
+import Index from "./pages/Index";
 import CoursePage from "./pages/CoursePage";
 import CoachDashboard from "./pages/CoachDashboard";
 import Auth from "./pages/Auth";
@@ -22,9 +22,9 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/auth" element={<Auth />} />
-            <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/course/:id" element={<ProtectedRoute><CoursePage /></ProtectedRoute>} />
-            <Route path="/coach" element={<ProtectedRoute><CoachDashboard /></ProtectedRoute>} />
+            <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+            <Route path="/course/:id" element={<ProtectedRoute allowedRoles={["student", "coach"]}><CoursePage /></ProtectedRoute>} />
+            <Route path="/coach" element={<ProtectedRoute allowedRoles={["coach"]}><CoachDashboard /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
