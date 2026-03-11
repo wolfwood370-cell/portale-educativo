@@ -156,6 +156,14 @@ const CoachDashboard = () => {
               {activeStudents} attivi
             </span>
           </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-9 w-9 text-muted-foreground hover:text-foreground"
+            onClick={signOut}
+          >
+            <LogOut className="h-4 w-4" />
+          </Button>
         </div>
       </header>
 
