@@ -1,12 +1,28 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Award, LogOut } from "lucide-react";
+import { Award, LogOut, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const DashboardHeader = () => {
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const initials = user?.email?.slice(0, 2).toUpperCase() || "??";
+  const [isCoach, setIsCoach] = useState(false);
+
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id)
+      .eq("role", "coach")
+      .maybeSingle()
+      .then(({ data }) => setIsCoach(!!data));
+  }, [user]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl shadow-sm">
@@ -21,6 +37,17 @@ const DashboardHeader = () => {
         </div>
 
         <div className="flex items-center gap-4">
+          {isCoach && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-1.5 border-border text-muted-foreground hover:text-foreground"
+              onClick={() => navigate("/coach")}
+            >
+              <ShieldCheck className="h-3.5 w-3.5" />
+              Area Coach
+            </Button>
+          )}
           <Badge className="border-primary/30 bg-primary/10 text-primary gap-1.5 px-3 py-1">
             <Award className="h-3.5 w-3.5" />
             Atleta Avanzato
