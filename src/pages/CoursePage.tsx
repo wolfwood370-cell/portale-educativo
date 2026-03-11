@@ -108,9 +108,9 @@ const CoursePage = () => {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center space-y-3">
-          <h1 className="text-2xl font-bold text-foreground">Course not found</h1>
+          <h1 className="text-2xl font-bold text-foreground">Corso non trovato</h1>
           <button className="text-sm text-primary underline" onClick={() => navigate("/")}>
-            Back to Dashboard
+            Torna alla Dashboard
           </button>
         </div>
       </div>
