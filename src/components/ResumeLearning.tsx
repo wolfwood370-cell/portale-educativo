@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -56,45 +55,55 @@ const ResumeLearning = () => {
   const totalLessons = lastCourse?.totalLessons || course?.totalLessons || 12;
 
   return (
-    <section className="space-y-6">
+    <section className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
           Bentornato, <span className="text-gradient-gold">{displayName}</span>
         </h1>
-        <p className="mt-1 text-muted-foreground">Riprendi da dove avevi lasciato.</p>
+        <p className="mt-2 text-muted-foreground text-base">Riprendi da dove avevi lasciato.</p>
       </div>
 
       <div
-        className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm card-glow card-glow-hover transition-all duration-500 cursor-pointer"
+        className="group relative overflow-hidden rounded-3xl bg-card border-2 border-primary/15 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300 cursor-pointer"
         onClick={() => navigate(`/course/${courseId}`)}
       >
-        <div className="aspect-video max-h-[320px] relative flex flex-col justify-end p-8 bg-gradient-to-t from-card via-card/80 to-transparent">
-          <div className="absolute inset-0 bg-gradient-to-br from-cat-training/10 via-transparent to-primary/5" />
-          <div className="absolute top-6 right-6 rounded-full bg-cat-training/15 px-3 py-1 text-xs font-medium text-cat-training border border-cat-training/20">
-            {course?.category || "Allenamento"}
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.04] via-transparent to-primary/[0.02]" />
+
+        <div className="relative z-10 flex flex-col justify-end p-8 md:p-10 min-h-[260px]">
+          <div className="absolute top-6 right-6 md:top-8 md:right-8">
+            <span className="rounded-full bg-primary/10 px-3.5 py-1.5 text-xs font-bold text-primary border border-primary/15 tracking-wide">
+              {course?.category || "Allenamento"}
+            </span>
           </div>
 
-          <div className="relative z-10 space-y-4">
+          <div className="space-y-5 max-w-xl">
             <div>
-              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-1">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground mb-2">
                 Riprendi a Studiare
               </p>
-              <h2 className="text-2xl font-bold text-foreground">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
                 {course?.title || "Corso RPE — La Guida Definitiva"}
               </h2>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="mt-1.5 text-sm text-muted-foreground">
                 Lezione {nextLesson} di {totalLessons}
               </p>
             </div>
 
+            {/* Progress bar */}
             <div className="flex items-center gap-4">
-              <Progress value={progress} className="h-1.5 flex-1 bg-secondary" />
-              <span className="text-xs font-semibold text-primary">{progress}%</span>
+              <div className="flex-1 rounded-full h-2.5 bg-secondary/80 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-primary transition-all duration-500"
+                  style={{ width: `${Math.max(progress, 2)}%` }}
+                />
+              </div>
+              <span className="text-sm font-bold text-primary tabular-nums">{progress}%</span>
             </div>
 
             <Button
               size="lg"
-              className="gap-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
+              className="gap-2.5 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 font-bold text-sm px-6"
             >
               <Play className="h-4 w-4" />
               {progress > 0 ? "Riprendi Corso" : "Inizia Corso"}
