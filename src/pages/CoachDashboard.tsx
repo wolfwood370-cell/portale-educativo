@@ -25,7 +25,7 @@ interface StudentRow {
 }
 
 const CoachDashboard = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, signOut, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [students, setStudents] = useState<StudentRow[]>([]);
   const [loading, setLoading] = useState(true);
