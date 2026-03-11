@@ -142,6 +142,7 @@ const CoursePage = () => {
       toast.success("Corso completato! 🎉", {
         description: "Ottimo lavoro! Stai tornando alla dashboard.",
       });
+
       setTimeout(() => navigate("/"), 1500);
     }
   };
