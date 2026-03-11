@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CourseViewerLayout, { type Lesson } from "@/components/CourseViewerLayout";
 import { CourseThemeProvider, type ThemeColor, themeClasses } from "@/lib/course-theme";
@@ -12,14 +12,13 @@ import PortionCalculator from "@/components/course/PortionCalculator";
 import { CelluliteStageQuiz } from "@/components/course/CelluliteComponents";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
-// Non-content courses keep mock data
 const otherCoursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
 > = {};
 
-// Full courses map
 const coursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
@@ -47,7 +46,6 @@ const coursesData: Record<
   },
 };
 
-// Content lookup per course
 const courseContentMap: Record<string, Record<string, { subtitle: string; content: React.ReactNode; insights: { text: string; url: string }[] }>> = {
   "rpe-mastery": rpeLessonContent,
   "cosa-devo-mangiare": nutritionLessonContent,
@@ -55,7 +53,6 @@ const courseContentMap: Record<string, Record<string, { subtitle: string; conten
   "cellulite-mini-corso": celluliteLessonContent,
 };
 
-// Calculator config per course
 const courseCalculators: Record<string, { icon: React.ElementType; label: string }> = {
   "rpe-mastery": { icon: Calculator, label: "Calcolatore RPE" },
   "cosa-devo-mangiare": { icon: Utensils, label: "Calcola Porzioni" },
@@ -75,6 +72,9 @@ const loadLessons = (courseId: string, defaults: Lesson[]): Lesson[] => {
   return defaults.map((l) => ({ ...l }));
 };
 
+const getDefaultActive = (lessons: Lesson[]) =>
+  lessons.find((l) => !l.completed)?.id || lessons[0]?.id || "l1";
+
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -83,21 +83,26 @@ const CoursePage = () => {
   const [lessons, setLessons] = useState<Lesson[]>(() =>
     course ? loadLessons(id!, course.lessons) : []
   );
+  const [activeLessonId, setActiveLessonId] = useState(() =>
+    course ? getDefaultActive(loadLessons(id!, course.lessons)) : "l1"
+  );
   const [showCalculator, setShowCalculator] = useState(false);
 
-  // Bug 1: Persist progress to localStorage
+  // Bug 1: Re-sync state when route param changes without unmount
+  useEffect(() => {
+    if (!id || !coursesData[id]) return;
+    const fresh = loadLessons(id, coursesData[id].lessons);
+    setLessons(fresh);
+    setActiveLessonId(getDefaultActive(fresh));
+    setShowCalculator(false);
+  }, [id]);
+
+  // Persist progress to localStorage
   useEffect(() => {
     if (!id || !course) return;
     const completedIds = lessons.filter((l) => l.completed).map((l) => l.id);
     localStorage.setItem(getStorageKey(id), JSON.stringify(completedIds));
   }, [lessons, id, course]);
-
-  const defaultActive = useMemo(
-    () => lessons.find((l) => !l.completed)?.id || lessons[0]?.id || "l1",
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [id]
-  );
-  const [activeLessonId, setActiveLessonId] = useState(defaultActive);
 
   if (!course) {
     return (
@@ -121,16 +126,21 @@ const CoursePage = () => {
     if (activeIdx > 0) setActiveLessonId(lessons[activeIdx - 1].id);
   };
 
+  // Bug 2: Toast + redirect on last lesson completion
   const handleContinue = () => {
     setLessons((prev) =>
       prev.map((l) => (l.id === activeLessonId ? { ...l, completed: true } : l))
     );
     if (activeIdx < lessons.length - 1) {
       setActiveLessonId(lessons[activeIdx + 1].id);
+    } else {
+      toast.success("Corso completato! 🎉", {
+        description: "Ottimo lavoro! Stai tornando alla dashboard.",
+      });
+      navigate("/");
     }
   };
 
-  // Get real content if available
   const contentMap = courseContentMap[id || ""];
   const lessonContent = contentMap?.[activeLessonId];
   const calcConfig = courseCalculators[id || ""];
@@ -150,9 +160,9 @@ const CoursePage = () => {
         isLastLesson={activeIdx === lessons.length - 1}
       >
         <article className="space-y-8">
-          {/* Lesson Header */}
+          {/* Bug 3: All classNames use cn() */}
           <header className="space-y-3">
-            <span className={`inline-block px-3 py-1 rounded-full ${tc.bgSubtle} ${tc.text} font-bold text-xs tracking-widest uppercase shadow-sm border ${tc.border}`}>
+            <span className={cn("inline-block px-3 py-1 rounded-full font-bold text-xs tracking-widest uppercase shadow-sm border", tc.bgSubtle, tc.text, tc.border)}>
               Lezione {activeIdx + 1}
             </span>
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
@@ -182,7 +192,6 @@ const CoursePage = () => {
             </div>
           </header>
 
-          {/* Lesson Content */}
           {lessonContent ? (
             <div className="bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border/50">
               {lessonContent.content}
@@ -212,10 +221,9 @@ const CoursePage = () => {
             </div>
           )}
 
-          {/* Scientific References */}
           {lessonContent?.insights && lessonContent.insights.length > 0 && (
             <div className="mt-16 pt-8 border-t-2 border-border/30">
-              <h4 className={`flex items-center text-xs font-bold ${tc.text} uppercase tracking-widest mb-6`}>
+              <h4 className={cn("flex items-center text-xs font-bold uppercase tracking-widest mb-6", tc.text)}>
                 <GraduationCap className="w-4 h-4 mr-2" /> RIFERIMENTI SCIENTIFICI
               </h4>
               <ul className="grid grid-cols-1 gap-3">
@@ -224,14 +232,14 @@ const CoursePage = () => {
                     key={i}
                     className="text-sm text-muted-foreground font-mono leading-relaxed bg-card p-4 rounded-lg border border-border/50 shadow-sm flex items-start"
                   >
-                    <ExternalLink className={`w-3 h-3 ${tc.text} mr-3 mt-1 flex-shrink-0`} />
+                    <ExternalLink className={cn("w-3 h-3 mr-3 mt-1 flex-shrink-0", tc.text)} />
                     <span>
                       {insight.text}{" "}
                       <a
                         href={insight.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`${tc.text} hover:underline ml-1`}
+                        className={cn("hover:underline ml-1", tc.text)}
                       >
                         [Link]
                       </a>
@@ -244,7 +252,6 @@ const CoursePage = () => {
         </article>
       </CourseViewerLayout>
 
-      {/* Calculators */}
       {showCalculator && id === "rpe-mastery" && (
         <RpeCalculator onClose={() => setShowCalculator(false)} />
       )}
