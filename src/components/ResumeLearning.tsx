@@ -10,32 +10,32 @@ const ResumeLearning = () => {
     <section className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          Welcome back, <span className="text-gradient-gold">Marco</span>
+          Bentornato, <span className="text-gradient-gold">Marco</span>
         </h1>
-        <p className="mt-1 text-muted-foreground">Pick up where you left off.</p>
+        <p className="mt-1 text-muted-foreground">Riprendi da dove avevi lasciato.</p>
       </div>
 
       <div
-        className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card card-glow card-glow-hover transition-all duration-500 cursor-pointer"
+        className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm card-glow card-glow-hover transition-all duration-500 cursor-pointer"
         onClick={() => navigate("/course/rpe-mastery")}
       >
         <div className="aspect-video max-h-[320px] relative flex flex-col justify-end p-8 bg-gradient-to-t from-card via-card/80 to-transparent">
           {/* Decorative background */}
           <div className="absolute inset-0 bg-gradient-to-br from-cat-training/10 via-transparent to-primary/5" />
           <div className="absolute top-6 right-6 rounded-full bg-cat-training/15 px-3 py-1 text-xs font-medium text-cat-training border border-cat-training/20">
-            Training
+            Allenamento
           </div>
 
           <div className="relative z-10 space-y-4">
             <div>
               <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-1">
-                Continue Learning
+                Riprendi a Studiare
               </p>
               <h2 className="text-2xl font-bold text-foreground">
                 Corso RPE — La Guida Definitiva
               </h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Lesson 4 of 8 · 12 min remaining
+                Lezione 4 di 8 · 12 min rimanenti
               </p>
             </div>
 
@@ -49,7 +49,7 @@ const ResumeLearning = () => {
               className="gap-2 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
             >
               <Play className="h-4 w-4" />
-              Resume Course
+              Riprendi Corso
             </Button>
           </div>
         </div>

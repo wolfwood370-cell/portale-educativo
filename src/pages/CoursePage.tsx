@@ -108,9 +108,9 @@ const CoursePage = () => {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center space-y-3">
-          <h1 className="text-2xl font-bold text-foreground">Course not found</h1>
+          <h1 className="text-2xl font-bold text-foreground">Corso non trovato</h1>
           <button className="text-sm text-primary underline" onClick={() => navigate("/")}>
-            Back to Dashboard
+            Torna alla Dashboard
           </button>
         </div>
       </div>
@@ -142,6 +142,7 @@ const CoursePage = () => {
       toast.success("Corso completato! 🎉", {
         description: "Ottimo lavoro! Stai tornando alla dashboard.",
       });
+
       setTimeout(() => navigate("/"), 1500);
     }
   };
@@ -198,11 +199,11 @@ const CoursePage = () => {
           </header>
 
           {lessonContent ? (
-            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border/50">
+            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-md border border-border">
               {lessonContent.content}
             </div>
           ) : (
-            <div className="prose prose-invert prose-sm max-w-none space-y-4">
+            <div className="prose prose-sm max-w-none space-y-4">
               <p className="text-foreground/80 leading-relaxed">
                 Questa lezione copre i concetti fondamentali che devi conoscere per progredire nel tuo
                 percorso di allenamento. Segui con attenzione ogni passaggio e prendi appunti per

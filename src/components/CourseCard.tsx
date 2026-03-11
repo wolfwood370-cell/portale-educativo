@@ -27,7 +27,7 @@ const CourseCard = ({
   return (
     <div
       onClick={() => navigate(`/course/${id}`)}
-      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border/50 bg-card transition-all duration-500 hover:scale-[1.03] hover:border-border card-glow card-glow-hover"
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-500 hover:scale-[1.03] hover:shadow-md card-glow card-glow-hover"
     >
       <div className="aspect-video relative flex flex-col justify-between p-5">
         {/* Decorative gradient bg */}
@@ -35,7 +35,7 @@ const CourseCard = ({
 
         <div className="relative z-10 flex items-start justify-between">
           <span
-            className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${colorClass} ${borderClass} bg-background/50 backdrop-blur-sm`}
+            className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${colorClass} ${borderClass} bg-card/80 backdrop-blur-sm`}
           >
             {category}
           </span>
@@ -69,7 +69,7 @@ const CourseCard = ({
           </h3>
           <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <BookOpen className="h-3.5 w-3.5" />
-            {lessons} lessons
+            {lessons} lezioni
           </p>
         </div>
       </div>

@@ -35,7 +35,7 @@ const CourseSidebarContent = ({
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="border-b border-border/50 p-5 space-y-4">
+      <div className="border-b border-border p-5 space-y-4">
         <div className="flex items-center gap-3">
           <div className={cn("h-2 w-2 rounded-full", tc.bg)} />
           <h2 className="text-sm font-semibold tracking-tight text-foreground leading-tight">
@@ -44,7 +44,7 @@ const CourseSidebarContent = ({
         </div>
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>{lessons.filter((l) => l.completed).length} of {lessons.length} completed</span>
+            <span>{lessons.filter((l) => l.completed).length} di {lessons.length} completate</span>
             <span className={cn("font-semibold", tc.text)}>{progress}%</span>
           </div>
           <Progress value={progress} className="h-1 bg-secondary" />
@@ -71,7 +71,7 @@ const CourseSidebarContent = ({
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center">
                     {lesson.completed ? (
                       <span className={cn("flex h-5 w-5 items-center justify-center rounded-full", tc.bg)}>
-                        <Check className="h-3 w-3 text-background" />
+                        <Check className="h-3 w-3 text-white" />
                       </span>
                     ) : isActive ? (
                       <span className={cn("h-2.5 w-2.5 rounded-full", tc.bg)} />
@@ -125,7 +125,6 @@ const CourseViewerLayout = ({
   const navigate = useNavigate();
   const mainRef = useRef<HTMLElement>(null);
 
-  // Bug 3: Scroll to top on lesson change
   useEffect(() => {
     mainRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   }, [activeLessonId]);
@@ -144,8 +143,8 @@ const CourseViewerLayout = ({
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex w-[320px] shrink-0 flex-col border-r border-border/50 bg-card">
-        <div className="flex items-center gap-2 border-b border-border/50 px-4 py-3">
+      <aside className="hidden md:flex w-[320px] shrink-0 flex-col border-r border-border bg-card shadow-sm">
+        <div className="flex items-center gap-2 border-b border-border px-4 py-3">
           <Button
             variant="ghost"
             size="icon"
@@ -154,16 +153,16 @@ const CourseViewerLayout = ({
           >
             <ArrowLeft className="h-4 w-4" />
           </Button>
-          <span className="text-xs text-muted-foreground">Back to Dashboard</span>
+          <span className="text-xs text-muted-foreground">Torna alla Dashboard</span>
         </div>
         <CourseSidebarContent {...sidebarProps} />
       </aside>
 
       {/* Mobile Sheet */}
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-        <SheetContent side="left" className="w-[300px] bg-card p-0 border-border/50">
-          <SheetTitle className="sr-only">Course Navigation</SheetTitle>
-          <div className="flex items-center gap-2 border-b border-border/50 px-4 py-3">
+        <SheetContent side="left" className="w-[300px] bg-card p-0 border-border">
+          <SheetTitle className="sr-only">Navigazione Corso</SheetTitle>
+          <div className="flex items-center gap-2 border-b border-border px-4 py-3">
             <Button
               variant="ghost"
               size="icon"
@@ -172,7 +171,7 @@ const CourseViewerLayout = ({
             >
               <ArrowLeft className="h-4 w-4" />
             </Button>
-            <span className="text-xs text-muted-foreground">Back to Dashboard</span>
+            <span className="text-xs text-muted-foreground">Torna alla Dashboard</span>
           </div>
           <CourseSidebarContent {...sidebarProps} />
         </SheetContent>
@@ -181,7 +180,7 @@ const CourseViewerLayout = ({
       {/* Main Content */}
       <div className="flex flex-1 flex-col min-w-0">
         {/* Mobile top bar */}
-        <header className="flex items-center gap-3 border-b border-border/50 px-4 py-3 md:hidden bg-card">
+        <header className="flex items-center gap-3 border-b border-border px-4 py-3 md:hidden bg-card shadow-sm">
           <Button
             variant="ghost"
             size="icon"
@@ -204,21 +203,21 @@ const CourseViewerLayout = ({
         </main>
 
         {/* Sticky bottom nav */}
-        <footer className="border-t border-border/50 bg-card px-6 py-4">
+        <footer className="border-t border-border bg-card px-6 py-4 shadow-sm">
           <div className="mx-auto flex max-w-3xl items-center justify-between">
             <Button
               variant="outline"
-              className="border-border/50 text-muted-foreground hover:text-foreground"
+              className="border-border text-muted-foreground hover:text-foreground"
               disabled={isFirstLesson}
               onClick={onPrevious}
             >
-              Previous
+              Precedente
             </Button>
             <Button
-              className={cn(tc.bg, tc.bgHover, "text-background font-semibold shadow-lg")}
+              className={cn(tc.bg, tc.bgHover, "text-white font-semibold shadow-lg")}
               onClick={onContinue}
             >
-              {isLastLesson ? "Complete Course" : "Complete & Continue"}
+              {isLastLesson ? "Completa Corso" : "Completa e Continua"}
             </Button>
           </div>
         </footer>
