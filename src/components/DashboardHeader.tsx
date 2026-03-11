@@ -1,8 +1,13 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Award } from "lucide-react";
+import { Award, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 
 const DashboardHeader = () => {
+  const { user, signOut } = useAuth();
+  const initials = user?.email?.slice(0, 2).toUpperCase() || "??";
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card/80 backdrop-blur-xl shadow-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
@@ -22,9 +27,17 @@ const DashboardHeader = () => {
           </Badge>
           <Avatar className="h-9 w-9 ring-2 ring-primary/30 ring-offset-2 ring-offset-background">
             <AvatarFallback className="bg-secondary text-secondary-foreground text-sm font-medium">
-              MC
+              {initials}
             </AvatarFallback>
           </Avatar>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-9 w-9 text-muted-foreground hover:text-foreground"
+            onClick={signOut}
+          >
+            <LogOut className="h-4 w-4" />
+          </Button>
         </div>
       </div>
     </header>
