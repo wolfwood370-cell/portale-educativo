@@ -179,16 +179,16 @@ const CoursePage = () => {
         isFirstLesson={activeIdx === 0}
         isLastLesson={activeIdx === lessons.length - 1}
       >
-        <article className="space-y-8">
-          <header className="space-y-3">
-            <span className={cn("inline-block px-3 py-1 rounded-full font-bold text-xs tracking-widest uppercase shadow-sm border", tc.bgSubtle, tc.text, tc.border)}>
+        <article className="space-y-10">
+          <header className="space-y-4">
+            <span className={cn("inline-block px-3.5 py-1 rounded-full font-bold text-[11px] tracking-widest uppercase shadow-sm border", tc.bgSubtle, tc.text, tc.border)}>
               Lezione {activeIdx + 1}
             </span>
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-[1.15]">
               {activeLesson?.title}
             </h1>
             {lessonContent && (
-              <p className="text-xl text-muted-foreground font-light tracking-wide">
+              <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
                 {lessonContent.subtitle}
               </p>
             )}
@@ -201,7 +201,7 @@ const CoursePage = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className={cn("border-border/50", tc.text, tc.hoverBgSubtle)}
+                  className={cn("rounded-xl border-border/60", tc.text, tc.hoverBgSubtle)}
                   onClick={() => setShowCalculator(true)}
                 >
                   <calcConfig.icon className="h-3.5 w-3.5 mr-1.5" />
@@ -212,31 +212,26 @@ const CoursePage = () => {
           </header>
 
           {lessonContent ? (
-            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-md border border-border">
-              {lessonContent.content}
+            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-border/40">
+              <div className="prose prose-slate max-w-none prose-headings:text-foreground prose-headings:font-bold prose-headings:tracking-tight prose-p:text-muted-foreground prose-p:leading-relaxed prose-li:text-muted-foreground prose-strong:text-foreground prose-a:text-primary">
+                {lessonContent.content}
+              </div>
             </div>
           ) : (
-            <div className="prose prose-sm max-w-none space-y-4">
-              <p className="text-foreground/80 leading-relaxed">
-                Questa lezione copre i concetti fondamentali che devi conoscere per progredire nel tuo
-                percorso di allenamento. Segui con attenzione ogni passaggio e prendi appunti per
-                massimizzare il tuo apprendimento.
-              </p>
-              <h2 className="text-lg font-semibold text-foreground mt-8">Punti Chiave</h2>
-              <ul className="space-y-2 text-foreground/70">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
-                  Comprendere i principi base è essenziale prima di passare ai concetti avanzati.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
-                  L'applicazione pratica richiede costanza e pazienza.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted-foreground/50 shrink-0" />
-                  Ogni concetto si costruisce sul precedente — non saltare le lezioni.
-                </li>
-              </ul>
+            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-border/40">
+              <div className="prose prose-slate max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed">
+                <p>
+                  Questa lezione copre i concetti fondamentali che devi conoscere per progredire nel tuo
+                  percorso di allenamento. Segui con attenzione ogni passaggio e prendi appunti per
+                  massimizzare il tuo apprendimento.
+                </p>
+                <h2>Punti Chiave</h2>
+                <ul>
+                  <li>Comprendere i principi base è essenziale prima di passare ai concetti avanzati.</li>
+                  <li>L'applicazione pratica richiede costanza e pazienza.</li>
+                  <li>Ogni concetto si costruisce sul precedente — non saltare le lezioni.</li>
+                </ul>
+              </div>
             </div>
           )}
 
