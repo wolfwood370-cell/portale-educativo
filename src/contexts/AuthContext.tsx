@@ -31,9 +31,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const { data } = await supabase
       .from("user_roles")
       .select("role")
-      .eq("user_id", userId)
-      .maybeSingle();
-    setUserRole(data?.role ?? "student");
+      .eq("user_id", userId);
+    // If user has multiple roles, prioritize 'coach'
+    const roles = (data ?? []).map((r) => r.role);
+    setUserRole(roles.includes("coach") ? "coach" : "student");
   };
 
   useEffect(() => {
