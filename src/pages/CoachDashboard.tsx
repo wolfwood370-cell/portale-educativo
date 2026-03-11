@@ -62,9 +62,11 @@ const CoachDashboard = () => {
 
       for (const row of progress || []) {
         if (!userMap.has(row.user_id)) {
+          const profile = profileMap.get(row.user_id);
           userMap.set(row.user_id, {
             userId: row.user_id,
-            displayName: profileMap.get(row.user_id) || "Senza nome",
+            displayName: profile?.name || "Senza nome",
+            email: profile?.email || "Email sconosciuta",
             courses: [],
             lastActive: null,
           });
