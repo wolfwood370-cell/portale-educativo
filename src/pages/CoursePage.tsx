@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import CourseViewerLayout, { type Lesson } from "@/components/CourseViewerLayout";
 import { CourseThemeProvider, type ThemeColor, themeClasses } from "@/lib/course-theme";
@@ -13,17 +13,13 @@ import { CelluliteStageQuiz } from "@/components/course/CelluliteComponents";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-
-const otherCoursesData: Record<
-  string,
-  { title: string; themeColor: ThemeColor; lessons: Lesson[] }
-> = {};
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 
 const coursesData: Record<
   string,
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
 > = {
-  ...otherCoursesData,
   "rpe-mastery": {
     title: "Corso RPE — La Guida Definitiva",
     themeColor: "sky",
@@ -59,18 +55,8 @@ const courseCalculators: Record<string, { icon: React.ElementType; label: string
   "cellulite-mini-corso": { icon: ClipboardCheck, label: "Test Autovalutazione" },
 };
 
-const getStorageKey = (courseId: string) => `course-progress-${courseId}`;
-
-const loadLessons = (courseId: string, defaults: Lesson[]): Lesson[] => {
-  try {
-    const saved = localStorage.getItem(getStorageKey(courseId));
-    if (saved) {
-      const completedIds: string[] = JSON.parse(saved);
-      return defaults.map((l) => ({ ...l, completed: completedIds.includes(l.id) }));
-    }
-  } catch { /* ignore */ }
-  return defaults.map((l) => ({ ...l }));
-};
+const applyProgress = (defaults: Lesson[], completedIds: string[]): Lesson[] =>
+  defaults.map((l) => ({ ...l, completed: completedIds.includes(l.id) }));
 
 const getDefaultActive = (lessons: Lesson[]) =>
   lessons.find((l) => !l.completed)?.id || lessons[0]?.id || "l1";
@@ -78,31 +64,55 @@ const getDefaultActive = (lessons: Lesson[]) =>
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const course = coursesData[id || ""];
 
   const [lessons, setLessons] = useState<Lesson[]>(() =>
-    course ? loadLessons(id!, course.lessons) : []
+    course ? course.lessons.map((l) => ({ ...l })) : []
   );
   const [activeLessonId, setActiveLessonId] = useState(() =>
-    course ? getDefaultActive(loadLessons(id!, course.lessons)) : "l1"
+    course ? getDefaultActive(course.lessons) : "l1"
   );
   const [showCalculator, setShowCalculator] = useState(false);
+  const [dbLoading, setDbLoading] = useState(true);
 
-  // Bug 1: Re-sync state when route param changes without unmount
+  // Fetch progress from Supabase on mount / route change
   useEffect(() => {
-    if (!id || !coursesData[id]) return;
-    const fresh = loadLessons(id, coursesData[id].lessons);
-    setLessons(fresh);
-    setActiveLessonId(getDefaultActive(fresh));
-    setShowCalculator(false);
-  }, [id]);
+    if (!id || !coursesData[id] || !user) return;
+    setDbLoading(true);
 
-  // Persist progress to localStorage
-  useEffect(() => {
-    if (!id || !course) return;
-    const completedIds = lessons.filter((l) => l.completed).map((l) => l.id);
-    localStorage.setItem(getStorageKey(id), JSON.stringify(completedIds));
-  }, [lessons, id, course]);
+    const fetchProgress = async () => {
+      const { data } = await supabase
+        .from("user_progress")
+        .select("completed_lessons")
+        .eq("user_id", user.id)
+        .eq("course_id", id)
+        .maybeSingle();
+
+      const completedIds: string[] = (data?.completed_lessons as string[]) || [];
+      const fresh = applyProgress(coursesData[id].lessons, completedIds);
+      setLessons(fresh);
+      setActiveLessonId(getDefaultActive(fresh));
+      setShowCalculator(false);
+      setDbLoading(false);
+    };
+
+    fetchProgress();
+  }, [id, user]);
+
+  // Save progress to Supabase
+  const saveProgress = async (updatedLessons: Lesson[]) => {
+    if (!user || !id) return;
+    const completedIds = updatedLessons.filter((l) => l.completed).map((l) => l.id);
+    await supabase.from("user_progress").upsert(
+      {
+        user_id: user.id,
+        course_id: id,
+        completed_lessons: completedIds,
+      },
+      { onConflict: "user_id,course_id" }
+    );
+  };
 
   if (!course) {
     return (
@@ -113,6 +123,14 @@ const CoursePage = () => {
             Torna alla Dashboard
           </button>
         </div>
+      </div>
+    );
+  }
+
+  if (dbLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
       </div>
     );
   }
@@ -131,18 +149,14 @@ const CoursePage = () => {
       l.id === activeLessonId ? { ...l, completed: true } : l
     );
     setLessons(updatedLessons);
+    saveProgress(updatedLessons);
 
     if (activeIdx < lessons.length - 1) {
       setActiveLessonId(lessons[activeIdx + 1].id);
     } else {
-      // Synchronously persist before navigating away
-      const completedIds = updatedLessons.filter((l) => l.completed).map((l) => l.id);
-      localStorage.setItem(getStorageKey(id!), JSON.stringify(completedIds));
-
       toast.success("Corso completato! 🎉", {
         description: "Ottimo lavoro! Stai tornando alla dashboard.",
       });
-
       setTimeout(() => navigate("/"), 1500);
     }
   };
@@ -166,7 +180,6 @@ const CoursePage = () => {
         isLastLesson={activeIdx === lessons.length - 1}
       >
         <article className="space-y-8">
-          {/* Bug 3: All classNames use cn() */}
           <header className="space-y-3">
             <span className={cn("inline-block px-3 py-1 rounded-full font-bold text-xs tracking-widest uppercase shadow-sm border", tc.bgSubtle, tc.text, tc.border)}>
               Lezione {activeIdx + 1}
