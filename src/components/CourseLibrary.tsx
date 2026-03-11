@@ -32,11 +32,14 @@ const CourseLibrary = () => {
   }, [user]);
 
   return (
-    <section className="space-y-5">
-      <h2 className="text-xl font-semibold tracking-tight text-foreground">
-        Libreria Corsi
-      </h2>
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="space-y-6">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight text-foreground">
+          Libreria Corsi
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">Esplora tutti i corsi disponibili.</p>
+      </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {COURSE_IDS.map((id) => {
           const meta = COURSE_META[id];
           return (
