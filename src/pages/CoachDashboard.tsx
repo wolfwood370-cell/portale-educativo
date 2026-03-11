@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { ArrowLeft, Users, BookOpen, Clock, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Users, BookOpen, Clock, ShieldCheck, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
 import { it } from "date-fns/locale";
@@ -25,7 +25,7 @@ interface StudentRow {
 }
 
 const CoachDashboard = () => {
-  const { user, loading: authLoading } = useAuth();
+  const { user, signOut, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [students, setStudents] = useState<StudentRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -156,6 +156,14 @@ const CoachDashboard = () => {
               {activeStudents} attivi
             </span>
           </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-9 w-9 text-muted-foreground hover:text-foreground"
+            onClick={signOut}
+          >
+            <LogOut className="h-4 w-4" />
+          </Button>
         </div>
       </header>
 
