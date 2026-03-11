@@ -126,18 +126,23 @@ const CoursePage = () => {
     if (activeIdx > 0) setActiveLessonId(lessons[activeIdx - 1].id);
   };
 
-  // Bug 2: Toast + redirect on last lesson completion
   const handleContinue = () => {
-    setLessons((prev) =>
-      prev.map((l) => (l.id === activeLessonId ? { ...l, completed: true } : l))
+    const updatedLessons = lessons.map((l) =>
+      l.id === activeLessonId ? { ...l, completed: true } : l
     );
+    setLessons(updatedLessons);
+
     if (activeIdx < lessons.length - 1) {
       setActiveLessonId(lessons[activeIdx + 1].id);
     } else {
+      // Synchronously persist before navigating away
+      const completedIds = updatedLessons.filter((l) => l.completed).map((l) => l.id);
+      localStorage.setItem(getStorageKey(id!), JSON.stringify(completedIds));
+
       toast.success("Corso completato! 🎉", {
         description: "Ottimo lavoro! Stai tornando alla dashboard.",
       });
-      navigate("/");
+      setTimeout(() => navigate("/"), 1500);
     }
   };
 
