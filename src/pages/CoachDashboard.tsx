@@ -19,6 +19,7 @@ import { COURSE_META } from "@/lib/course-metadata";
 interface StudentRow {
   userId: string;
   displayName: string;
+  email: string;
   courses: { courseId: string; completedCount: number; totalLessons: number; updatedAt: string }[];
   lastActive: string | null;
 }
