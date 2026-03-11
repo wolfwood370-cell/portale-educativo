@@ -19,6 +19,7 @@ import { COURSE_META } from "@/lib/course-metadata";
 interface StudentRow {
   userId: string;
   displayName: string;
+  email: string;
   courses: { courseId: string; completedCount: number; totalLessons: number; updatedAt: string }[];
   lastActive: string | null;
 }
@@ -49,21 +50,23 @@ const CoachDashboard = () => {
       setIsCoach(true);
 
       const [{ data: profiles }, { data: progress }] = await Promise.all([
-        supabase.from("profiles").select("user_id, display_name"),
+        supabase.from("profiles").select("user_id, display_name, email"),
         supabase.from("user_progress").select("user_id, course_id, completed_lessons, updated_at"),
       ]);
 
       const profileMap = new Map(
-        (profiles || []).map((p) => [p.user_id, p.display_name || "Senza nome"])
+        (profiles || []).map((p) => [p.user_id, { name: p.display_name || "Senza nome", email: p.email || "Email sconosciuta" }])
       );
 
       const userMap = new Map<string, StudentRow>();
 
       for (const row of progress || []) {
         if (!userMap.has(row.user_id)) {
+          const profile = profileMap.get(row.user_id);
           userMap.set(row.user_id, {
             userId: row.user_id,
-            displayName: profileMap.get(row.user_id) || "Senza nome",
+            displayName: profile?.name || "Senza nome",
+            email: profile?.email || "Email sconosciuta",
             courses: [],
             lastActive: null,
           });
@@ -83,9 +86,9 @@ const CoachDashboard = () => {
       }
 
       // Add profiles without progress (excluding self)
-      for (const [uid, name] of profileMap) {
+      for (const [uid, profile] of profileMap) {
         if (!userMap.has(uid) && uid !== user.id) {
-          userMap.set(uid, { userId: uid, displayName: name, courses: [], lastActive: null });
+          userMap.set(uid, { userId: uid, displayName: profile.name, email: profile.email, courses: [], lastActive: null });
         }
       }
 
@@ -187,9 +190,10 @@ const CoachDashboard = () => {
                         {student.displayName.slice(0, 2).toUpperCase()}
                       </div>
 
-                      {/* Name + last active */}
+                      {/* Name + email + last active */}
                       <div className="min-w-0 flex-1 text-left">
                         <p className="font-semibold text-foreground truncate">{student.displayName}</p>
+                        <p className="text-xs text-muted-foreground truncate">{student.email}</p>
                         <div className="flex items-center gap-3 text-xs text-muted-foreground mt-0.5">
                           {student.lastActive ? (
                             <span className="flex items-center gap-1">
