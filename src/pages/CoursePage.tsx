@@ -202,7 +202,7 @@ const CoursePage = () => {
               {lessonContent.content}
             </div>
           ) : (
-            <div className="prose prose-invert prose-sm max-w-none space-y-4">
+            <div className="prose prose-sm max-w-none space-y-4">
               <p className="text-foreground/80 leading-relaxed">
                 Questa lezione copre i concetti fondamentali che devi conoscere per progredire nel tuo
                 percorso di allenamento. Segui con attenzione ogni passaggio e prendi appunti per
