@@ -5,13 +5,7 @@ import { Progress } from "@/components/ui/progress";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-
-const COURSE_META: Record<string, { title: string; totalLessons: number; category: string }> = {
-  "rpe-mastery": { title: "Corso RPE — La Guida Definitiva", totalLessons: 8, category: "Allenamento" },
-  "cosa-devo-mangiare": { title: "Cosa Devo Mangiare?", totalLessons: 6, category: "Nutrizione" },
-  integratori: { title: "Quali integratori usare?", totalLessons: 5, category: "Integratori" },
-  "cellulite-mini-corso": { title: "Cellulite — Il Mini Corso", totalLessons: 4, category: "Fisiologia" },
-};
+import { COURSE_META } from "@/lib/course-metadata";
 
 const ResumeLearning = () => {
   const navigate = useNavigate();
@@ -52,13 +46,14 @@ const ResumeLearning = () => {
     fetchLastProgress();
   }, [user]);
 
-  const course = lastCourse ? COURSE_META[lastCourse.courseId] : COURSE_META["rpe-mastery"];
+  const defaultCourseId = "rpe-mastery";
+  const course = lastCourse ? COURSE_META[lastCourse.courseId] : COURSE_META[defaultCourseId];
   const progress = lastCourse
     ? Math.round((lastCourse.completedCount / lastCourse.totalLessons) * 100)
     : 0;
-  const courseId = lastCourse?.courseId || "rpe-mastery";
+  const courseId = lastCourse?.courseId || defaultCourseId;
   const nextLesson = lastCourse?.nextLesson || 1;
-  const totalLessons = lastCourse?.totalLessons || course?.totalLessons || 8;
+  const totalLessons = lastCourse?.totalLessons || course?.totalLessons || 12;
 
   return (
     <section className="space-y-6">
