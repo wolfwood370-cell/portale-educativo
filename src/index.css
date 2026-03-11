@@ -4,54 +4,54 @@
 
 @layer base {
   :root {
-    --background: 222 47% 3%;
-    --foreground: 210 40% 96%;
+    --background: 210 20% 97%;
+    --foreground: 215 25% 15%;
 
-    --card: 222 30% 6%;
-    --card-foreground: 210 40% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
 
-    --popover: 222 30% 6%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 38 92% 60%;
-    --primary-foreground: 222 47% 3%;
+    --primary: 38 92% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 12%;
-    --secondary-foreground: 210 40% 80%;
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 215 20% 40%;
 
-    --muted: 220 15% 10%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 15% 50%;
 
-    --accent: 220 20% 14%;
-    --accent-foreground: 210 40% 96%;
+    --accent: 210 15% 93%;
+    --accent-foreground: 215 25% 15%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 14%;
-    --input: 220 15% 14%;
-    --ring: 38 92% 60%;
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 38 92% 50%;
 
     --radius: 0.75rem;
 
     /* Category accent colors */
-    --cat-nutrition: 152 60% 45%;
-    --cat-training: 199 89% 48%;
-    --cat-supplements: 263 70% 58%;
-    --cat-physiology: 350 65% 55%;
+    --cat-nutrition: 152 60% 38%;
+    --cat-training: 199 89% 42%;
+    --cat-supplements: 263 70% 50%;
+    --cat-physiology: 350 65% 50%;
 
     /* Glow effects */
-    --glow-gold: 0 0 40px hsl(38 92% 60% / 0.15);
-    --glow-card: 0 0 60px hsl(220 40% 50% / 0.06);
+    --glow-gold: 0 0 40px hsl(38 92% 50% / 0.12);
+    --glow-card: 0 4px 20px hsl(220 40% 50% / 0.06);
 
-    --sidebar-background: 220 15% 5%;
-    --sidebar-foreground: 210 40% 80%;
-    --sidebar-primary: 38 92% 60%;
-    --sidebar-primary-foreground: 222 47% 3%;
-    --sidebar-accent: 220 20% 12%;
-    --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 220 15% 14%;
-    --sidebar-ring: 38 92% 60%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 215 20% 40%;
+    --sidebar-primary: 38 92% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 15% 95%;
+    --sidebar-accent-foreground: 215 25% 15%;
+    --sidebar-border: 214 20% 88%;
+    --sidebar-ring: 38 92% 50%;
   }
 }
 
@@ -73,7 +73,7 @@
     box-shadow: var(--glow-gold);
   }
   .text-gradient-gold {
-    background: linear-gradient(135deg, hsl(38 92% 60%), hsl(45 100% 72%));
+    background: linear-gradient(135deg, hsl(38 92% 50%), hsl(30 80% 42%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -199,7 +199,7 @@ const CoursePage = () => {
           </header>
 
           {lessonContent ? (
-            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-xl border border-border/50">
+            <div className="bg-card p-8 md:p-12 rounded-2xl shadow-md border border-border">
               {lessonContent.content}
             </div>
           ) : (
