@@ -12,6 +12,8 @@ import {
   ArrowRight,
   PieChart,
 } from "lucide-react";
+import { useCourseTheme, themeClasses } from "@/lib/course-theme";
+import { cn } from "@/lib/utils";
 
 const profiles: Record<
   string,
@@ -28,6 +30,9 @@ interface PortionCalculatorProps {
 }
 
 const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
+  const { themeColor } = useCourseTheme();
+  const tc = themeClasses[themeColor];
+
   const [gender, setGender] = useState<"male" | "female">("male");
   const [meals, setMeals] = useState(3);
   const [goalProfile, setGoalProfile] = useState("health");
@@ -76,9 +81,9 @@ const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-emerald-800 p-5 flex justify-between items-center flex-shrink-0">
+        <div className={cn(tc.bgDark, "p-5 flex justify-between items-center flex-shrink-0")}>
           <div className="flex items-center">
-            <PieChart className="w-5 h-5 mr-2 text-emerald-300" />
+            <PieChart className={cn("w-5 h-5 mr-2", tc.textLight)} />
             <h3 className="text-white font-bold text-lg">
               {showResult ? "Il Tuo Piano Nutrizionale" : "Calcola Porzioni"}
             </h3>
@@ -110,8 +115,8 @@ const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
               </div>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <div className="w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center flex-shrink-0 mr-4">
-                    <Hand className="w-6 h-6 text-emerald-400" />
+                  <div className={cn("w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 mr-4", tc.bgSubtle)}>
+                    <Hand className={cn("w-6 h-6", tc.text)} />
                   </div>
                   <div>
                     <h5 className="font-bold text-foreground mb-1">Proteine = Il Palmo</h5>
@@ -181,11 +186,12 @@ const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
                     <button
                       key={g}
                       onClick={() => setGender(g)}
-                      className={`p-3 rounded-lg border font-bold text-sm transition-all ${
+                      className={cn(
+                        "p-3 rounded-lg border font-bold text-sm transition-all",
                         gender === g
-                          ? "bg-emerald-500 text-white border-emerald-500"
-                          : "bg-card text-foreground border-border hover:border-emerald-500/50"
-                      }`}
+                          ? cn(tc.bg, "text-white", tc.borderActive)
+                          : cn("bg-card text-foreground border-border", tc.hoverBorder)
+                      )}
                     >
                       {g === "male" ? "Uomo" : "Donna"}
                     </button>
@@ -201,11 +207,12 @@ const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
                     <button
                       key={key}
                       onClick={() => setGoalProfile(key)}
-                      className={`w-full text-left p-3 rounded-lg border transition-all ${
+                      className={cn(
+                        "w-full text-left p-3 rounded-lg border transition-all",
                         goalProfile === key
-                          ? "bg-emerald-500/10 border-emerald-500 ring-1 ring-emerald-500"
-                          : "bg-card border-border hover:border-emerald-500/50"
-                      }`}
+                          ? cn(tc.bgSubtle, tc.borderActive, "ring-1", tc.ringActive)
+                          : cn("bg-card border-border", tc.hoverBorder)
+                      )}
                     >
                       <div className="font-bold text-foreground text-sm">{prof.label}</div>
                       <div className="text-xs text-muted-foreground mt-1">{prof.desc}</div>
@@ -225,16 +232,16 @@ const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
                     step="1"
                     value={meals}
                     onChange={(e) => setMeals(parseInt(e.target.value))}
-                    className="w-full h-2 bg-emerald-500/20 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+                    className={cn("w-full h-2 rounded-lg appearance-none cursor-pointer", tc.bgSubtle, tc.accent)}
                   />
-                  <span className="text-xl font-bold text-emerald-400 w-8 text-center">{meals}</span>
+                  <span className={cn("text-xl font-bold w-8 text-center", tc.text)}>{meals}</span>
                 </div>
               </div>
 
               {/* Calculate */}
               <button
                 onClick={calculatePortions}
-                className="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/30 transition-all flex items-center justify-center"
+                className={cn("w-full py-4 text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center", tc.bg, tc.bgHover, tc.shadow)}
               >
                 Calcola il Mio Piano <ArrowRight className="ml-2 w-5 h-5" />
               </button>
@@ -317,26 +324,26 @@ const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
                           onChange={(e) => setIsWorkoutDay(e.target.checked)}
                           className="sr-only peer"
                         />
-                        <div className="w-9 h-5 bg-secondary peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-sky-500/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-600 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-sky-500" />
+                        <div className={cn("w-9 h-5 bg-secondary peer-focus:outline-none peer-focus:ring-2 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-600 after:border after:rounded-full after:h-4 after:w-4 after:transition-all", tc.ring, `peer-checked:${tc.bg.replace("bg-", "bg-")}`)} />
                       </div>
-                      <span className="ml-2 text-xs font-bold text-sky-400">Ti alleni oggi?</span>
+                      <span className={cn("ml-2 text-xs font-bold", tc.text)}>Ti alleni oggi?</span>
                     </label>
                   </div>
                   {isWorkoutDay ? (
                     <div className="text-xs text-foreground/80 space-y-2">
                       <div className="flex items-start">
-                        <span className="text-sky-400 mr-2">•</span>
+                        <span className={cn("mr-2", tc.text)}>•</span>
                         <span><strong>Pre-Workout:</strong> Fai un pasto leggero (1/2 carboidrati e proteine) circa 90 min prima. Evita grassi e fibre.</span>
                       </div>
                       <div className="flex items-start">
-                        <span className="text-sky-400 mr-2">•</span>
+                        <span className={cn("mr-2", tc.text)}>•</span>
                         <span><strong>Post-Workout:</strong> È il momento migliore! Mangia la tua porzione più grande di Carboidrati (Coppe) qui.</span>
                       </div>
                     </div>
                   ) : (
                     <div className="text-xs text-foreground/80">
                       <div className="flex items-start">
-                        <span className="text-sky-400 mr-2">•</span>
+                        <span className={cn("mr-2", tc.text)}>•</span>
                         <span><strong>Giorno di Riposo:</strong> Distribuisci i carboidrati equamente durante il giorno. Mantieni alte le proteine per il recupero.</span>
                       </div>
                     </div>
@@ -345,7 +352,7 @@ const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
 
                 <button
                   onClick={() => setShowUnitGuide(true)}
-                  className="w-full mt-4 text-xs font-bold text-emerald-400 hover:underline flex items-center justify-center"
+                  className={cn("w-full mt-4 text-xs font-bold hover:underline flex items-center justify-center", tc.text)}
                 >
                   <HelpCircle className="w-3 h-3 mr-1" />Dubbi sulle unità? Apri Guida
                 </button>
@@ -353,7 +360,7 @@ const PortionCalculator = ({ onClose }: PortionCalculatorProps) => {
 
               <button
                 onClick={reset}
-                className="w-full py-3 bg-emerald-500 text-white font-bold text-sm hover:bg-emerald-600 rounded-lg flex items-center justify-center transition-colors"
+                className={cn("w-full py-3 text-white font-bold text-sm rounded-lg flex items-center justify-center transition-colors", tc.bg, tc.bgHover)}
               >
                 <RotateCcw className="w-4 h-4 mr-2" />Ricalcola
               </button>

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Calculator, X, Activity, ChevronDown, ArrowRight, RotateCcw } from "lucide-react";
+import { useCourseTheme, themeClasses } from "@/lib/course-theme";
+import { cn } from "@/lib/utils";
 
 const rpeChart: Record<number, Record<number, number>> = {
   10:   { 1: 1.00, 2: 0.96, 3: 0.92, 4: 0.89, 5: 0.86, 6: 0.84, 7: 0.81, 8: 0.79, 9: 0.76, 10: 0.74, 11: 0.71, 12: 0.69, 15: 0.61, 20: 0.50 },
@@ -73,6 +75,9 @@ interface RpeCalculatorProps {
 }
 
 const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
+  const { themeColor } = useCourseTheme();
+  const tc = themeClasses[themeColor];
+
   const [weight, setWeight] = useState("");
   const [reps, setReps] = useState("");
   const [answers, setAnswers] = useState<Record<number, string>>({
@@ -148,9 +153,9 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-sky-600 p-5 flex justify-between items-center flex-shrink-0">
+        <div className={cn(tc.bgDark, "p-5 flex justify-between items-center flex-shrink-0")}>
           <h3 className="text-white font-bold text-lg flex items-center">
-            <Calculator className="w-5 h-5 mr-2 text-sky-200" />
+            <Calculator className={cn("w-5 h-5 mr-2", tc.textLight)} />
             {showResult ? "Risultato" : "Calcolatore RPE"}
           </h3>
           <button onClick={onClose} className="text-white/70 hover:text-white">
@@ -172,7 +177,7 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
                     type="number"
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
-                    className="w-full p-3 border border-border rounded-lg text-foreground bg-secondary font-bold focus:ring-2 focus:ring-sky-500 outline-none text-center text-lg"
+                    className={cn("w-full p-3 border border-border rounded-lg text-foreground bg-secondary font-bold outline-none text-center text-lg focus:ring-2", tc.focusRing)}
                     placeholder="es. 100"
                     autoFocus
                   />
@@ -185,7 +190,7 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
                     type="number"
                     value={reps}
                     onChange={(e) => setReps(e.target.value)}
-                    className="w-full p-3 border border-border rounded-lg text-foreground bg-secondary font-bold focus:ring-2 focus:ring-sky-500 outline-none text-center text-lg"
+                    className={cn("w-full p-3 border border-border rounded-lg text-foreground bg-secondary font-bold outline-none text-center text-lg focus:ring-2", tc.focusRing)}
                     placeholder="es. 5"
                   />
                 </div>
@@ -194,8 +199,8 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
               {/* Qualitative Analysis */}
               <div className="space-y-4">
                 <div className="flex items-center space-x-2 pb-2 border-b border-border/50">
-                  <Activity className="w-4 h-4 text-sky-400" />
-                  <span className="text-xs font-bold text-sky-400 uppercase tracking-wider">
+                  <Activity className={cn("w-4 h-4", tc.text)} />
+                  <span className={cn("text-xs font-bold uppercase tracking-wider", tc.text)}>
                     Analisi Qualitativa
                   </span>
                 </div>
@@ -217,7 +222,7 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
                       <select
                         value={answers[q.id]}
                         onChange={(e) => handleAnswerChange(q.id, e.target.value)}
-                        className="w-full p-3 pr-10 appearance-none bg-card border border-border rounded-lg text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all cursor-pointer"
+                        className={cn("w-full p-3 pr-10 appearance-none bg-card border border-border rounded-lg text-sm text-foreground focus:outline-none focus:ring-2 transition-all cursor-pointer", tc.focusRing)}
                       >
                         <option value="" disabled>
                           Seleziona una risposta...
@@ -228,7 +233,7 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
                           </option>
                         ))}
                       </select>
-                      <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-sky-400 pointer-events-none" />
+                      <ChevronDown className={cn("absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 pointer-events-none", tc.text)} />
                     </div>
                   </div>
                 ))}
@@ -238,7 +243,7 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
               <button
                 onClick={calculateResult}
                 disabled={!isFormValid}
-                className="w-full py-4 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 transition-all flex items-center justify-center mt-2"
+                className={cn("w-full py-4 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center mt-2", tc.bg, tc.bgHover, tc.shadow)}
               >
                 Calcola RPE & Massimale{" "}
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -251,7 +256,7 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
                 <p className="text-xs font-bold text-muted-foreground uppercase mb-1">
                   RPE Calcolato
                 </p>
-                <div className="text-5xl font-extrabold text-sky-400 mb-2">
+                <div className={cn("text-5xl font-extrabold mb-2", tc.text)}>
                   {result?.rpe}
                 </div>
                 <p className="text-xs text-muted-foreground">
@@ -303,7 +308,7 @@ const RpeCalculator = ({ onClose }: RpeCalculatorProps) => {
                 </button>
                 <button
                   onClick={fullReset}
-                  className="flex-1 py-3 bg-sky-500 text-white font-bold text-sm hover:bg-sky-600 rounded-lg flex items-center justify-center transition-colors"
+                  className={cn("flex-1 py-3 text-white font-bold text-sm rounded-lg flex items-center justify-center transition-colors", tc.bg, tc.bgHover)}
                 >
                   Nuovo Calcolo
                 </button>

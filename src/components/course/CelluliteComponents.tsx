@@ -15,6 +15,8 @@ import {
   Droplet,
   Activity,
 } from "lucide-react";
+import { useCourseTheme, themeClasses } from "@/lib/course-theme";
+import { cn } from "@/lib/utils";
 
 /* ── InfoBox ── */
 export const CelluliteInfoBox = ({
@@ -126,6 +128,9 @@ export const TreatmentTable = () => (
 
 /* ── CelluliteStageQuiz ── */
 export const CelluliteStageQuiz = ({ onClose }: { onClose: () => void }) => {
+  const { themeColor } = useCourseTheme();
+  const tc = themeClasses[themeColor];
+
   const [step, setStep] = useState(0);
   const [result, setResult] = useState<{
     title: string;
@@ -196,12 +201,12 @@ export const CelluliteStageQuiz = ({ onClose }: { onClose: () => void }) => {
         className="bg-card w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] border border-border/50"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="bg-background p-5 flex justify-between items-center flex-shrink-0 border-b border-border/50">
+        <div className={cn(tc.bgDark, "p-5 flex justify-between items-center flex-shrink-0")}>
           <div className="flex items-center">
-            <ClipboardCheck className="w-5 h-5 mr-2 text-rose-400" />
-            <h3 className="text-foreground font-bold text-lg">Test Autovalutazione</h3>
+            <ClipboardCheck className={cn("w-5 h-5 mr-2", tc.textLight)} />
+            <h3 className="text-white font-bold text-lg">Test Autovalutazione</h3>
           </div>
-          <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors">
+          <button onClick={onClose} className="text-white/70 hover:text-white transition-colors">
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -211,7 +216,7 @@ export const CelluliteStageQuiz = ({ onClose }: { onClose: () => void }) => {
             <div className="space-y-6">
               <div className="w-full bg-secondary h-2 rounded-full mb-4">
                 <div
-                  className="bg-rose-500 h-full rounded-full transition-all duration-300"
+                  className={cn(tc.bg, "h-full rounded-full transition-all duration-300")}
                   style={{ width: step === 0 ? "33%" : "66%" }}
                 />
               </div>
@@ -225,10 +230,10 @@ export const CelluliteStageQuiz = ({ onClose }: { onClose: () => void }) => {
               <div className="grid gap-3">
                 <button
                   onClick={() => handleAnswer("yes")}
-                  className="p-4 rounded-xl border-2 border-border/50 hover:border-rose-500 hover:bg-rose-500/5 transition-all text-left font-bold text-foreground flex items-center group"
+                  className={cn("p-4 rounded-xl border-2 border-border/50 transition-all text-left font-bold text-foreground flex items-center group", tc.hoverBorder, tc.hoverBgSubtle)}
                 >
-                  <div className="w-6 h-6 rounded-full border-2 border-muted-foreground/30 group-hover:border-rose-500 mr-3 flex items-center justify-center">
-                    <div className="w-3 h-3 rounded-full bg-rose-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className={cn("w-6 h-6 rounded-full border-2 border-muted-foreground/30 mr-3 flex items-center justify-center", `group-hover:${tc.borderActive.replace("border-", "border-")}`)}>
+                    <div className={cn("w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity", tc.bg)} />
                   </div>
                   Sì
                 </button>
@@ -260,7 +265,7 @@ export const CelluliteStageQuiz = ({ onClose }: { onClose: () => void }) => {
 
               <button
                 onClick={() => { setResult(null); setStep(0); }}
-                className="mt-6 text-sm text-muted-foreground hover:text-rose-400 font-bold flex items-center justify-center w-full"
+                className={cn("mt-6 text-sm font-bold flex items-center justify-center w-full text-muted-foreground", `hover:${tc.text.replace("text-", "text-")}`)}
               >
                 <RotateCcw className="w-4 h-4 mr-2" /> Ripeti Test
               </button>
