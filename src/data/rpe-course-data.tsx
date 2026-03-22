@@ -356,7 +356,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           <li><strong>Disagio:</strong> Come mi sentivo? Era panico o solo fatica? Serve per capire se siamo entrati nella zona allenante e per orientarsi.</li>
           <li><strong>Tecnica:</strong> Ho mantenuto la forma o ho compensato (es. schiena storta)? Valida la qualità del lavoro e la sicurezza.</li>
           <li><strong>Velocità:</strong> L'ultima rep è stata lenta? Quanto rispetto alla prima? Conferma oggettiva della fatica.</li>
-          <li><strong>RIR:</strong> Sulla base di questi dati, quante ne avevo ancora davvero? Converti in numero RPE (O RIR = 10, 1 RIR = 9, ecc.).</li>
+          <li><strong>RIR:</strong> Sulla base di questi dati, quante ne avevo ancora davvero? Converti in numero RPE (0 RIR = 10, 1 RIR = 9, ecc.).</li>
         </ol>
       </div>
     ),
