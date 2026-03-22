@@ -34,7 +34,7 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           "Bevi un bicchiere d'acqua prima di ogni pasto.",
         ]} />
 
-        <CourseImage src="Pic 1.png" alt="Il Ciclo Restrizione-Abbuffata" caption="Il Ciclo Restrizione-Abbuffata" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-1-restriction-binge-cycle.webp" alt="Il Ciclo Restrizione-Abbuffata" caption="Il Ciclo Restrizione-Abbuffata" />
 
         <h3 className="text-xl font-bold text-foreground mt-6">Il Meccanismo del Cortisolo</h3>
         <p>Quando ti imponi regole rigide ("Mai più pizza"), il tuo cervello percepisce una minaccia. Questo eleva il cortisolo. Il cortisolo alto cronico ha due effetti devastanti:</p>
@@ -49,7 +49,7 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           icon={Brain}
         />
 
-        <CourseImage src="Pic 2.png" alt="Infografica: Il Principio 80/20" caption="Il Principio 80/20" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-1-80-20-principle.webp" alt="Infografica: Il Principio 80/20" caption="Il Principio 80/20" />
 
         <div className="bg-emerald-500/10 border-l-4 border-emerald-500 p-6 my-6 rounded-r-lg">
           <h3 className="font-bold text-foreground mb-2 text-lg">Il Principio dell'80/20</h3>
@@ -69,7 +69,7 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
       <div className="space-y-6 text-foreground/80 leading-relaxed">
         <p>Il concetto di "Caloria è una Caloria" è vero in termodinamica, ma falso in fisiologia. 100 kcal di broccoli e 100 kcal di caramelle inviano <strong>messaggi ormonali</strong> opposti. I cibi ultra-processati sono progettati per l'iper-palatabilità, hackerando i nostri segnali di sazietà.</p>
 
-        <CourseImage src="Pic 3.png" alt="Illustrazione: L'Hacking del Cervello" caption="Hacking della Sazietà" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-2-brain-hacking-satiety.webp" alt="Illustrazione: L'Hacking del Cervello" caption="Hacking della Sazietà" />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">Analisi degli Errori Comuni</h3>
         <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
@@ -79,7 +79,7 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           <p className="text-base text-foreground/80">Molti credono che se un biscotto è "Bio" o "Senza Glutine", allora non faccia ingrassare. <strong>Realtà:</strong> Lo zucchero di canna biologico ha lo stesso impatto metabolico dello zucchero bianco. Le patatine fritte vegane sono pur sempre patatine fritte. Non guardare l'etichetta frontale (marketing), guarda la lista ingredienti (realtà).</p>
         </div>
 
-        <CourseImage src="Pic 4.png" alt="Confronto Visivo: Cibo Vero vs Processato" caption="Cibo Vero vs Ultra-Processato" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-2-real-vs-processed-food.webp" alt="Confronto Visivo: Cibo Vero vs Processato" caption="Cibo Vero vs Ultra-Processato" />
 
         <DecisionProtocol
           title="Valutazione Qualità Cibo"
@@ -109,14 +109,14 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           icon={Activity}
         />
 
-        <CourseImage src="Pic 5.png" alt="Grafico: Costo Metabolico della Digestione" caption="Costo Metabolico della Digestione (TEF)" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-3-thermic-effect-digestion.webp" alt="Grafico: Costo Metabolico della Digestione" caption="Costo Metabolico della Digestione (TEF)" />
 
         <div className="bg-sky-500/10 p-5 rounded-lg border border-sky-500/20 my-6">
           <h4 className="font-bold text-sky-300 mb-2">Perché usiamo la mano come unità di misura?</h4>
           <p className="text-base text-foreground/80">Non hai sempre una bilancia con te, ma hai sempre le tue mani. Inoltre, le mani sono proporzionate alla tua taglia: una persona più grande ha mani più grandi e necessita di porzioni maggiori. Per le proteine, il <strong>PALMO</strong> (senza dita) corrisponde alla quantità di tessuto muscolare che il tuo corpo può gestire in un pasto.</p>
         </div>
 
-        <CourseImage src="Pic 6.png" alt="Guida Visiva: Porzione a Palmo" caption="Guida Porzione: Proteine" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-3-palm-portion-protein.webp" alt="Guida Visiva: Porzione a Palmo" caption="Guida Porzione: Proteine" />
 
         <FoodTable
           title="Fonti Proteiche"
@@ -153,14 +153,14 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           icon={Microscope}
         />
 
-        <CourseImage src="Pic 7.png" alt="Confronto: Volume Gastrico e Sazietà" caption="Volume Gastrico e Sazietà" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-4-gastric-volume-satiety.webp" alt="Confronto: Volume Gastrico e Sazietà" caption="Volume Gastrico e Sazietà" />
 
         <div className="bg-sky-500/10 p-5 rounded-lg border border-sky-500/20 my-6">
           <h4 className="font-bold text-sky-300 mb-2">La Regola del Pugno</h4>
           <p className="text-base text-foreground/80">Per le verdure, l'unità di misura è il <strong>PUGNO</strong> chiuso. Essendo poco dense caloricamente, il pugno ci aiuta a garantire un volume minimo di fibre e micronutrienti. Un pugno è circa una tazza (cup) di verdure cotte o crude. L'obiettivo è riempire lo stomaco con volume a bassa densità energetica.</p>
         </div>
 
-        <CourseImage src="Pic 8.png" alt="Guida Visiva: Porzione a Pugno" caption="Guida Porzione: Verdure" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-4-fist-portion-vegetables.webp" alt="Guida Visiva: Porzione a Pugno" caption="Guida Porzione: Verdure" />
 
         <div className="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-lg mt-6">
           <h4 className="font-bold text-yellow-400 mb-2 flex items-center">
@@ -203,14 +203,14 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           icon={Activity}
         />
 
-        <CourseImage src="Pic 9.png" alt="Grafico: Montagne Russe Glicemiche" caption="Impatto Glicemico" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-5-glycemic-rollercoaster.webp" alt="Grafico: Montagne Russe Glicemiche" caption="Impatto Glicemico" />
 
         <div className="bg-sky-500/10 p-5 rounded-lg border border-sky-500/20 my-6">
           <h4 className="font-bold text-sky-300 mb-2">La Mano a Coppa</h4>
           <p className="text-base text-foreground/80">I carboidrati sono densi di energia. Per evitare eccessi, usiamo la <strong>MANO A COPPA</strong>. Immagina di tenere dell'acqua nel palmo della mano: quella è la quantità massima di amidi (riso, pasta, patate) o frutta per porzione. Questa misura limita naturalmente l'introito calorico senza dover pesare nulla.</p>
         </div>
 
-        <CourseImage src="Pic 10.png" alt="Guida Visiva: Porzione a Coppa" caption="Guida Porzione: Carboidrati" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-5-cupped-hand-portion-carbs.webp" alt="Guida Visiva: Porzione a Coppa" caption="Guida Porzione: Carboidrati" />
 
         <h3 className="text-xl font-bold text-foreground mt-6">Analisi Errori: La Trappola della Colazione Dolce</h3>
         <p>Iniziare la giornata con soli zuccheri (brioche, biscotti) crea un picco insulinico che crollerà a metà mattina, generando fame reattiva. <strong>Soluzione:</strong> Inserisci sempre una fonte proteica o grassa a colazione per smussare la curva glicemica.</p>
@@ -248,7 +248,7 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           <p className="text-base text-foreground/80">Proprio perché i grassi sono così calorici, la porzione è piccola: corrisponde al tuo <strong>POLLICE</strong> intero. Questo equivale a circa un cucchiaio d'olio o una manciatina di frutta secca. È facile esagerare coi grassi (specialmente oli e condimenti), quindi usare il pollice è un ottimo freno visivo.</p>
         </div>
 
-        <CourseImage src="Pic 11.png" alt="Guida Visiva: Porzione a Pollice" caption="Guida Porzione: Grassi" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-6-thumb-portion-fats.webp" alt="Guida Visiva: Porzione a Pollice" caption="Guida Porzione: Grassi" />
 
         <FoodTable
           title="Fonti di Grassi"
@@ -284,7 +284,7 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           icon={Activity}
         />
 
-        <CourseImage src="Pic 13.png" alt="Timeline Nutrizione Sportiva" caption="Timing Nutrizionale Sportivo" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-7-sports-nutrition-timeline.webp" alt="Timeline Nutrizione Sportiva" caption="Timing Nutrizionale Sportivo" />
 
         <h3 className="text-xl font-bold text-foreground mt-6">Cosa Mangiare Intorno all'Allenamento</h3>
         <DecisionProtocol
@@ -305,7 +305,7 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           icon={Droplet}
         />
 
-        <CourseImage src="Pic 14.png" alt="Scala Cromatica Idratazione" caption="Scala Cromatica Idratazione" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-7-hydration-color-scale.webp" alt="Scala Cromatica Idratazione" caption="Scala Cromatica Idratazione" />
 
         <DecisionProtocol
           title="Protocollo Idratazione"
@@ -333,7 +333,7 @@ export const nutritionLessonContent: Record<string, NutritionLessonContent> = {
           <li>Testa per 2 settimane</li>
         </ul>
 
-        <CourseImage src="Pic 12.png" alt="Diagramma di Flusso: Il Ciclo Sperimentale" caption="Il Ciclo Sperimentale" />
+        <CourseImage src="/images/courses/nutrition/nutrition-lesson-8-experimental-cycle-flowchart.webp" alt="Diagramma di Flusso: Il Ciclo Sperimentale" caption="Il Ciclo Sperimentale" />
 
         <h3 className="text-xl font-bold text-foreground mt-6">Protocolli di Risoluzione Problemi</h3>
 

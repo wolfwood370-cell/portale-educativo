@@ -53,8 +53,8 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
           </p>
         </div>
 
-        <CourseImage src="Pic 1.png" alt="Piramide delle Priorità" caption="Piramide delle Priorità: Prima Dieta e Sonno, poi Integratori." />
-        <CourseImage src="Pic 2.png" alt="Analisi Scientifica" caption="Analisi chimica: capire cosa c'è davvero dentro." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-1-priority-pyramid.webp" alt="Piramide delle Priorità" caption="Piramide delle Priorità: Prima Dieta e Sonno, poi Integratori." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-1-scientific-analysis.webp" alt="Analisi Scientifica" caption="Analisi chimica: capire cosa c'è davvero dentro." />
 
         <InfoBox title="Come leggere le classificazioni" content="Ho diviso gli integratori in categorie basate sulla forza delle prove scientifiche umane a supporto." type="info" />
 
@@ -99,7 +99,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Come accennato nella guida scientifica, spesso non ci accorgiamo nemmeno di avere un sistema immunitario finché non stiamo male. Un sistema immunitario forte non significa "sovraccarico" (che porterebbe ad allergie o autoimmunità), ma <strong>equilibrio e prontezza</strong>. Il vero obiettivo è l'<strong>immunomodulazione</strong>: supportare la capacità del corpo di rispondere rapidamente alle minacce esterne e di spegnere l'infiammazione quando non serve più.</p>
 
-        <CourseImage src="Pic 3.png" alt="Scudo Immunitario" caption="Il sistema immunitario come scudo contro i patogeni." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-2-immune-shield.webp" alt="Scudo Immunitario" caption="Il sistema immunitario come scudo contro i patogeni." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Vitamina D" type="Primary" dose="400-1000 IU/die (prevenzione)" mechanism="La Vitamina D non è solo una vitamina, ma un ormone steroideo che regola l'espressione di centinaia di geni. Modula sia il sistema immunitario innato che adattivo, stimolando la produzione di peptidi antimicrobici potenti come la catelicidina e le defensine nelle mucose respiratorie." notes="Fondamentale per la prevenzione delle infezioni respiratorie. La carenza è endemica in inverno. Se le analisi mostrano carenza (<30 ng/mL), dosi maggiori sotto controllo medico sono spesso necessarie." />
@@ -132,7 +132,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Le ossa sono molto più complesse di quanto si pensi: non sono impalcature statiche, ma tessuto vivo in costante <strong>rimodellamento</strong> (bone turnover). Fino ai 30 anni costruiamo massa ossea ("conto in banca"), dopo i 30 iniziamo lentamente a prelevare. La strategia nutrizionale deve mirare a massimizzare il picco da giovani e rallentare il riassorbimento da anziani, bilanciando l'attività degli osteoblasti (che costruiscono) e osteoclasti (che demoliscono).</p>
 
-        <CourseImage src="Pic 4.png" alt="Salute delle Ossa" caption="Osso sano vs Osteoporosi: l'importanza della struttura." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-3-bone-health.webp" alt="Salute delle Ossa" caption="Osso sano vs Osteoporosi: l'importanza della struttura." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Calcio" type="Primary" dose="500-1200 mg/die (totale)" mechanism="Fornisce il materiale strutturale grezzo (cristalli di idrossiapatite) per la matrice ossea mineralizzata." notes="Meglio se assunto con Vitamina D. Preferire sempre fonti alimentari (latticini, verdure a foglia); l'eccesso da integratori può depositarsi nelle arterie (rischio cardiovascolare)." />
@@ -161,7 +161,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Le malattie cardiovascolari (CVD) sono responsabili di una vasta percentuale della mortalità globale, ma la prevenzione è potente. Spesso si presentano come ipertensione, problemi lipidici o disfunzione endoteliale. Gli integratori possono agire migliorando la flessibilità delle arterie, riducendo l'infiammazione sistemica e ottimizzando il profilo lipidico (grassi nel sangue).</p>
 
-        <CourseImage src="Pic 5.png" alt="Salute Cardiovascolare" caption="Vasodilatazione: come l'Ossido Nitrico apre le arterie." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-4-cardiovascular-vasodilation.webp" alt="Salute Cardiovascolare" caption="Vasodilatazione: come l'Ossido Nitrico apre le arterie." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Nitrati" type="Core" dose="6.4-12.8 mg/kg" mechanism="Attraverso la via nitrato-nitrito-ossido nitrico, vengono convertiti in NO, una molecola di segnalazione che rilassa la muscolatura liscia dei vasi sanguigni." notes="Molto efficace per ridurre la pressione sistolica (anche di 4-10 mmHg). Fonti: succo di barbabietola, rucola, spinaci. Evitare colluttori antisettici che bloccano la conversione orale." />
@@ -190,7 +190,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Il glucosio è un semplice zucchero che il corpo usa per energia o immagazzina come <strong>glicogeno</strong> nel fegato e nei muscoli. Quando le riserve sono piene o l'insulina non funziona bene (resistenza), i livelli di zucchero nel sangue salgono. L'obiettivo è migliorare la <strong>sensibilità all'insulina</strong>, permettendo alle cellule di assorbire il glucosio efficacemente senza richiedere quantità massicce di ormone.</p>
 
-        <CourseImage src="Pic 6.png" alt="Diabete e Glicemia" caption="Glicemia stabile vs Picchi glicemici dannosi." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-5-blood-sugar-control.webp" alt="Diabete e Glicemia" caption="Glicemia stabile vs Picchi glicemici dannosi." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Fibre Viscose" type="Core" dose="10-15 g/die" mechanism="Forma un gel denso nell'intestino tenue che intrappola i nutrienti e rallenta fisicamente l'azione degli enzimi digestivi, bloccando l'assorbimento rapido degli zuccheri." notes="Riduce significativamente i picchi glicemici post-prandiali. Psillio, glucomannano o pectine sono ottime scelte. Bere molta acqua è essenziale per evitare blocchi." />
@@ -219,7 +219,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Bisogna distinguere tra 'bruciare grassi' (ossidazione) e 'perdere peso' (bilancio energetico negativo). Molti integratori aumentano l'ossidazione, ma se mangi troppo, ri-depositerai quel grasso. Non esiste una pillola magica che sostituisca il deficit calorico. Gli integratori efficaci agiscono o aumentando leggermente il dispendio calorico (termogenesi) o, cosa più importante, riducendo l'appetito e preservando i muscoli.</p>
 
-        <CourseImage src="Pic 7.png" alt="Metabolismo" caption="Il bilancio energetico: Metabolismo Basale + Attività." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-6-metabolism-energy-balance.webp" alt="Metabolismo" caption="Il bilancio energetico: Metabolismo Basale + Attività." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Proteine (totali)" type="Primary" dose="1.5-2.2 g/kg" mechanism="Stimolano la secrezione di ormoni della sazietà (GLP-1, PYY, CCK) e riducono la grelina (fame). Inoltre, hanno un alto effetto termico (il corpo brucia il 20-30% delle calorie proteiche solo per digerirle)." notes="La strategia n.1 per la ricomposizione corporea. Preservano la massa metabolicamente attiva (muscolo) durante il deficit calorico." />
@@ -246,7 +246,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Che cos'è l'invecchiamento? Scientificamente viene definito come una "perdita progressiva dell'integrità fisiologica", che porta a funzioni compromesse. La buona notizia è che possiamo influenzare la nostra "resilienza". A livello cellulare, questo significa mantenere la funzione mitocondriale (energia), prevenire danni al DNA e conservare la massa muscolare per evitare la fragilità.</p>
 
-        <CourseImage src="Pic 8.png" alt="Invecchiamento Cellulare" caption="Invecchiamento cellulare e meccanismi di riparazione." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-7-cellular-aging.webp" alt="Invecchiamento Cellulare" caption="Invecchiamento cellulare e meccanismi di riparazione." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Proteine" type="Primary" dose="1.2-1.6 g/kg/die" mechanism="Stimolano la sintesi proteica muscolare e contrastano la sarcopenia (perdita di massa muscolare legata all'età)." notes="Fondamentale aumentare l'apporto proteico con l'avanzare dell'età per mantenere l'autonomia." />
@@ -276,7 +276,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>A differenza della perdita di peso, dove esiste una formula base (deficit calorico), per i dolori articolari non c'è una soluzione unica. Le articolazioni sono complesse e spesso il danno deriva da usura o infiammazione. La strategia vincente combina la riduzione dell'infiammazione cronica con il supporto alla matrice di collagene.</p>
 
-        <CourseImage src="Pic 9.png" alt="Articolazioni" caption="Anatomia di un ginocchio sano: cartilagine e lubrificazione." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-8-joint-anatomy.webp" alt="Articolazioni" caption="Anatomia di un ginocchio sano: cartilagine e lubrificazione." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Curcumina" type="Primary" dose="500-1500 mg/die" mechanism="Inibisce potenti pathway infiammatori come COX-2 e il fattore nucleare NF-kB, riducendo la cascata delle citochine." notes="Per l'osteoartrite del ginocchio, ha efficacia paragonabile all'ibuprofene ma con meno effetti collaterali gastrici. Essenziale usare forme bio-disponibili (es. fitosoma)." />
@@ -303,7 +303,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>La sessualità è un complesso equilibrio neurochimico di <strong>eccitazione</strong> (guidata dalla dopamina) e <strong>inibizione</strong> (spesso mediata dalla serotonina e dagli oppioidi). Molti farmaci antidepressivi riducono la libido proprio aumentando la serotonina. Gli integratori possono agire su questo bilanciamento o sul flusso sanguigno.</p>
 
-        <CourseImage src="Pic 10.png" alt="Bilancia Ormonale" caption="L'equilibrio ormonale che regola il desiderio sessuale." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-9-hormonal-balance-libido.webp" alt="Bilancia Ormonale" caption="L'equilibrio ormonale che regola il desiderio sessuale." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Maca" type="Secondary" dose="1.5-3 g/die" mechanism="Agisce centralmente sui neurotrasmettitori cerebrali e sul sistema endocannabinoide, non sui livelli ormonali periferici." notes="Aumenta la libido soggettiva e il benessere sessuale sia in uomini che donne, anche in presenza di SSRI. Non aspettarti un aumento di testosterone." />
@@ -330,7 +330,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Il fegato è il "Coltellino Svizzero" degli organi o una vera <strong>fabbrica chimica</strong>: produce, scompone, trasporta e immagazzina. Non è un semplice filtro che si intasa. Lavora costantemente trasformando tossine (come ammoniaca o farmaci) in composti sicuri. Gli integratori utili non fanno "detox" magici, ma supportano queste reazioni enzimatiche o proteggono le cellule dai danni.</p>
 
-        <CourseImage src="Pic 11.png" alt="Filtro Epatico" caption="Il fegato: un filtro chimico complesso, non una spugna." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-10-liver-filter.webp" alt="Filtro Epatico" caption="Il fegato: un filtro chimico complesso, non una spugna." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="NAC" type="Secondary" dose="600-1200 mg" mechanism="Fornisce cisteina, il fattore limitante per la sintesi di Glutatione, il principale antiossidante endogeno del fegato." notes="Essenziale per supportare la Fase II di disintossicazione e proteggere il fegato dallo stress ossidativo (es. da alcol o paracetamolo)." />
@@ -357,7 +357,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Il cervello consuma il 20% dell'energia del corpo. Per ottimizzare le funzioni cognitive (memoria, attenzione, velocità di elaborazione) servono tre cose: energia costante (glucosio/chetoni), un flusso sanguigno eccellente (per portare ossigeno e nutrienti) e neuroprotezione (per difendere i neuroni dall'infiammazione e ossidazione).</p>
 
-        <CourseImage src="Pic 12.png" alt="Rete Neurale" caption="Sinapsi neuronali: la rete elettrica del pensiero." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-11-neural-network-synapses.webp" alt="Rete Neurale" caption="Sinapsi neuronali: la rete elettrica del pensiero." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Caffeina + Teanina" type="Primary" dose="1:2 Ratio" mechanism="Sinergia perfetta: La caffeina aumenta l'allerta bloccando l'adenosina; la Teanina aumenta le onde Alfa e il GABA, prevenendo l'ansia e il nervosismo." notes="Lo stack ideale per sessioni di lavoro intenso o studio. Focus pulito e calmo." />
@@ -384,7 +384,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Tutti ci sentiamo giù ogni tanto, ma il disturbo depressivo maggiore (MDD) è una condizione distinta che colpisce milioni di persone. Gli integratori possono offrire un supporto modulando neurotrasmettitori come serotonina e dopamina, ma è fondamentale capire che non sostituiscono la terapia professionale per condizioni cliniche severe.</p>
 
-        <CourseImage src="Pic 13.png" alt="Serotonina" caption="Serotonina: la molecola della stabilità emotiva." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-12-serotonin-molecule.webp" alt="Serotonina" caption="Serotonina: la molecola della stabilità emotiva." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Creatina" type="Primary" dose="5 g/die" mechanism="Migliora il metabolismo energetico cerebrale. Studi mostrano benefici significativi quando combinata con SSRI." notes="Particolarmente promettente nelle donne e in chi non risponde bene ai soli farmaci." />
@@ -412,7 +412,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Esiste una sorta di "Santa Trinità" dell'esercizio: Migliore Performance, Più Muscolo, Meno Grasso. Per costruire muscolo, l'esercizio è una necessità assoluta. Gli integratori agiscono come carburante o supporto per permetterti di allenarti più duramente (Creatina, Caffeina) o per recuperare meglio (Proteine).</p>
 
-        <CourseImage src="Pic 14.png" alt="Fibra Muscolare" caption="Struttura muscolare: dove agisce la creatina." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-13-muscle-fiber-structure.webp" alt="Fibra Muscolare" caption="Struttura muscolare: dove agisce la creatina." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Creatina" type="Core" dose="5 g/die" mechanism="Aumenta le riserve di fosfocreatina nel muscolo, permettendo una rigenerazione ultra-rapida dell'ATP durante sforzi massimali brevi (pesi, sprint)." notes="Gold standard per potenza e massa. Trattiene acqua intra-cellulare (un bene per l'anabolismo), non ritenzione idrica sottocutanea." />
@@ -440,7 +440,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Il mondo della cosmetica è un po' come il "Far West": ci sono poche regole e molti slogan. Etichette come "testato dermatologicamente" spesso indicano solo che un test è avvenuto, non che il prodotto funzioni. Gli integratori orali, tuttavia, possono agire dall'interno fornendo i precursori strutturali come il collagene per la pelle.</p>
 
-        <CourseImage src="Pic 15.png" alt="Strati della Pelle" caption="Il collagene come impalcatura del derma." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-14-skin-layers-collagen.webp" alt="Strati della Pelle" caption="Il collagene come impalcatura del derma." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Collagene Idrolizzato" type="Secondary" dose="2.5-10 g/die" mechanism="I peptidi bioattivi stimolano i fibroblasti della pelle a produrre nuovo collagene ed elastina." notes="Migliora l'elasticità e l'idratazione della pelle, riducendo le rughe sottili." />
@@ -463,7 +463,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>I dati ci dicono che il sonno influenza i risultati in palestra o nello studio spesso più della dieta stessa. Dormire poco è correlato a livelli di stress più alti e a plateau nell'allenamento. Gli integratori possono aiutare a sincronizzare l'orologio interno (Melatonina) o a favorire il rilassamento (Magnesio).</p>
 
-        <CourseImage src="Pic 16.png" alt="Ciclo Circadiano" caption="Ritmo Circadiano: il ciclo naturale sonno-veglia." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-15-circadian-rhythm.webp" alt="Ciclo Circadiano" caption="Ritmo Circadiano: il ciclo naturale sonno-veglia." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Melatonina" type="Primary" dose="0.5-3 mg" mechanism="È un cronobiotico: segnala al cervello che è buio e che è ora di dormire, abbassando la temperatura corporea e riducendo l'allerta." notes="Ottima per ridurre il tempo di addormentamento (latenza) e per il jet-lag. Dosi minori (0.3mg) sono spesso più fisiologiche ed efficaci di quelle alte." />
@@ -489,7 +489,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Spesso usiamo i termini in modo intercambiabile, ma "stress" è la pressione (causa), mentre "ansia" e "paura" sono le risposte emotive. Entrambi attivano la risposta "combatti o fuggi" (asse HPA). Gli adattogeni aiutano a 'tamponare' questa risposta biochimica, rendendo l'organismo più resiliente.</p>
 
-        <CourseImage src="Pic 17.png" alt="Stress vs Calma" caption="Cortisolo: l'impatto dello stress cronico sul corpo." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-16-stress-cortisol-impact.webp" alt="Stress vs Calma" caption="Cortisolo: l'impatto dello stress cronico sul corpo." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Ashwagandha" type="Primary" dose="300-600 mg" mechanism="Agisce sui recettori GABA e modula l'asse ipotalamo-ipofisi-surrene, riducendo significativamente i livelli di cortisolo sierico." notes="Efficace per ridurre ansia percepita e stress. Può causare anedonia in alcuni se usata troppo a lungo; si consiglia di ciclizzarla." />
@@ -515,7 +515,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Pochi sanno che il testosterone è importante anche per la libido e l'umore femminile. Negli uomini, invece, c'è spesso un'ossessione per i "numeri" dei test. L'approccio scientifico non è cercare numeri magici, ma <strong>rimuovere i freni</strong> (carenze, stress, obesità) per permettere al corpo di tornare al suo picco naturale.</p>
 
-        <CourseImage src="Pic 18.png" alt="Asse HPTA" caption="Asse HPTA: la centralina di controllo del testosterone." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-17-hpta-axis.webp" alt="Asse HPTA" caption="Asse HPTA: la centralina di controllo del testosterone." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Ashwagandha" type="Primary" dose="300-600 mg" mechanism="Riducendo il cortisolo (ormone dello stress), permette al testosterone di risalire fisiologicamente." notes="Molto efficace negli uomini stressati o che si allenano intensamente." />
@@ -541,7 +541,7 @@ export const integratoriLessonContent: Record<string, LessonContent> = {
       <div className="space-y-8 text-foreground/80 leading-relaxed">
         <p>Paesi come l'India hanno una tradizione vegetariana secolare. Tuttavia, la scelta moderna di escludere interi gruppi alimentari (carne o derivati animali) richiede attenzione nutrizionale. L'integrazione intelligente non è un 'fallimento' etico della dieta, ma una necessità biologica per compensare ciò che la natura ha messo principalmente negli alimenti animali (come la B12).</p>
 
-        <CourseImage src="Pic 19.png" alt="Puzzle Nutrienti" caption="Il puzzle nutrizionale: colmare le lacune della dieta vegetale." />
+        <CourseImage src="/images/courses/integratori/integratori-lesson-18-nutrient-puzzle-vegan.webp" alt="Puzzle Nutrienti" caption="Il puzzle nutrizionale: colmare le lacune della dieta vegetale." />
 
         <div className="grid gap-6 md:grid-cols-2">
           <SupplementCard name="Vitamina B12" type="Core" dose="25-100 mcg" mechanism="Cofattore per la sintesi del DNA e la salute dei nervi. Assente nel regno vegetale in forma attiva." notes="Mandatorio per tutti i vegani. La carenza causa danni nervosi irreversibili. Le alghe spesso contengono pseudo-B12 che maschera la carenza." />

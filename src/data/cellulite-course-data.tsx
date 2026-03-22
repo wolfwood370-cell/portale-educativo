@@ -35,7 +35,7 @@ export const celluliteLessonContent: Record<string, LessonContent> = {
           <strong className="text-foreground">Non è solo una questione estetica:</strong> la salute del microcircolo e del tessuto connettivo è fondamentale per il benessere generale delle tue gambe e del sistema linfatico.
         </p>
 
-        <CourseImage src="Pic 1.png" alt="Tessuto Sano vs PEFS" caption="Confronto visivo: Tessuto adiposo sano con circolazione fluida (sinistra) vs stati infiammatori della cellulite con setti fibrosi (destra)." />
+        <CourseImage src="/images/courses/cellulite/cellulite-lesson-1-healthy-vs-pefs-tissue.webp" alt="Tessuto Sano vs PEFS" caption="Confronto visivo: Tessuto adiposo sano con circolazione fluida (sinistra) vs stati infiammatori della cellulite con setti fibrosi (destra)." />
 
         <div className="grid md:grid-cols-2 gap-6 my-8">
           <div className="bg-card p-5 rounded-xl shadow-sm border-t-4 border-blue-400 border-x border-b border-border/50">
@@ -109,7 +109,7 @@ export const celluliteLessonContent: Record<string, LessonContent> = {
           </div>
         </div>
 
-        <CourseImage src="Pic 2.png" alt="Schema Ormonale" caption="L'equilibrio delicato: come Insulina e Aldosterone cooperano a livello renale per il riassorbimento del sodio." />
+        <CourseImage src="/images/courses/cellulite/cellulite-lesson-2-hormonal-balance-schema.webp" alt="Schema Ormonale" caption="L'equilibrio delicato: come Insulina e Aldosterone cooperano a livello renale per il riassorbimento del sodio." />
       </div>
     ),
     insights: [
@@ -147,7 +147,7 @@ export const celluliteLessonContent: Record<string, LessonContent> = {
           </div>
         </div>
 
-        <CourseImage src="Pic 3.png" alt="Confronto Strutturale" caption="Differenza strutturale dei setti fibrosi tra uomo (incrociati) e donna (perpendicolari)." />
+        <CourseImage src="/images/courses/cellulite/cellulite-lesson-3-fibrous-septa-comparison.webp" alt="Confronto Strutturale" caption="Differenza strutturale dei setti fibrosi tra uomo (incrociati) e donna (perpendicolari)." />
 
         <h3 className="text-lg font-bold text-rose-400 mt-6">Classificazione della Cellulite</h3>
         <p className="text-sm mb-4">La gravità viene valutata secondo la scala di Nürnberger e Müller e la CSS (Cellulite Severity Scale):</p>
@@ -171,7 +171,7 @@ export const celluliteLessonContent: Record<string, LessonContent> = {
           </div>
         </div>
 
-        <CourseImage src="Pic 4.png" alt="Stadi della Cellulite" caption="Evoluzione clinica: da Edema (stadio 1) a Sclerosi (stadio 3/4). Intervenire ai primi stadi è cruciale." />
+        <CourseImage src="/images/courses/cellulite/cellulite-lesson-3-stages-progression.webp" alt="Stadi della Cellulite" caption="Evoluzione clinica: da Edema (stadio 1) a Sclerosi (stadio 3/4). Intervenire ai primi stadi è cruciale." />
       </div>
     ),
     insights: [
@@ -231,7 +231,7 @@ export const celluliteLessonContent: Record<string, LessonContent> = {
           <strong>⚠️ Nota Importante:</strong> Questa suddivisione è una <em>semplificazione didattica</em>. La scienza ci dice che non esistono compartimenti stagni: la distribuzione del tessuto adiposo è uno <strong>spettro continuo</strong> influenzato da genetica e ormoni. Molte donne presentano caratteristiche miste o intermedie. Non cercare di rientrare "a forza" in una categoria, ma usa questi profili per capire le <em>tendenze prevalenti</em> del tuo corpo.
         </div>
 
-        <CourseImage src="Pic 5.png" alt="Biotipi Costituzionali" caption="Differenza di distribuzione adiposa tra biotipo Ginoide (sinistra) e Androide (destra)." />
+        <CourseImage src="/images/courses/cellulite/cellulite-lesson-5-biotype-distribution.webp" alt="Biotipi Costituzionali" caption="Differenza di distribuzione adiposa tra biotipo Ginoide (sinistra) e Androide (destra)." />
 
         <div className="bg-card p-6 rounded-xl border-l-4 border-rose-500 shadow-sm my-6 border-y border-r border-border/50">
           <h3 className="text-lg font-bold text-rose-400 mb-2">Il Paradosso dei Recettori</h3>
@@ -272,7 +272,7 @@ export const celluliteLessonContent: Record<string, LessonContent> = {
           Il problema principale della donna ginoide è il ristagno venoso. Il sangue scende ma fatica a risalire. I protocolli migliori sfruttano l'azione di "pompa" muscolare su tutto il corpo: <strong className="text-foreground">PHA</strong> (Peripheral Heart Action) e <strong className="text-foreground">AAS</strong> (Anaerobic Aerobic System).
         </p>
 
-        <CourseImage src="Pic 6.png" alt="Circolazione Sanguigna" caption="Visualizzazione del sistema circolatorio e delle stazioni linfatiche principali." />
+        <CourseImage src="/images/courses/cellulite/cellulite-lesson-6-circulatory-system.webp" alt="Circolazione Sanguigna" caption="Visualizzazione del sistema circolatorio e delle stazioni linfatiche principali." />
 
         <div className="my-8">
           <h3 className="flex items-center text-xl font-bold text-rose-400 mb-3">
@@ -282,7 +282,7 @@ export const celluliteLessonContent: Record<string, LessonContent> = {
             L'obiettivo è muovere il sangue da un estremo all'altro. Alternando un esercizio UPPER body con uno LOWER body, costringi il cuore a pompare il sangue su e giù, impedendo il ristagno.
           </p>
 
-          <CourseImage src="Pic 7.png" alt="Schema Circuito PHA" caption="Diagramma di flusso del sangue durante un circuito PHA: dal distretto superiore a quello inferiore e viceversa." />
+          <CourseImage src="/images/courses/cellulite/cellulite-lesson-6-pha-circuit-bloodflow.webp" alt="Schema Circuito PHA" caption="Diagramma di flusso del sangue durante un circuito PHA: dal distretto superiore a quello inferiore e viceversa." />
 
           <div className="bg-card border border-border/50 rounded-xl p-5 shadow-sm">
             <h4 className="font-bold text-foreground border-b border-border/30 pb-2 mb-3 text-sm uppercase tracking-wide">Scheda Pratica PHA (Esempio)</h4>
@@ -335,7 +335,7 @@ export const celluliteLessonContent: Record<string, LessonContent> = {
           Non esiste la "Dieta Anticellulite" magica, ma un'alimentazione bilanciata è fondamentale per gestire l'infiammazione e la ritenzione. La ricerca scientifica suggerisce di seguire il modello della dieta mediterranea (o simili bilanciate), ricca di cibi vegetali.
         </p>
 
-        <CourseImage src="Pic 8.png" alt="Piramide Alimentare e Cibi Antinfiammatori" caption="I pilastri dell'alimentazione antinfiammatoria: vegetali, fibre e idratazione corretta." />
+        <CourseImage src="/images/courses/cellulite/cellulite-lesson-7-anti-inflammatory-foods.webp" alt="Piramide Alimentare e Cibi Antinfiammatori" caption="I pilastri dell'alimentazione antinfiammatoria: vegetali, fibre e idratazione corretta." />
 
         <h3 className="text-lg font-bold text-rose-400 mt-6">Cottura e AGEs (Advanced Glycation End Products)</h3>
         <p className="text-sm">
