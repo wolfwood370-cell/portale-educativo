@@ -61,7 +61,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           <li><strong>RPE 7</strong> = 3 RIR (Tre ripetizioni in riserva).</li>
         </ul>
 
-        <CourseImage src="Pic 1.png" alt="Scala RPE vs RIR" caption="Tabella di conversione RPE/RIR." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-1-scale-rpe-rir.webp" alt="Scala RPE vs RIR" caption="Tabella di conversione RPE/RIR." />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">Perché abbandonare le percentuali fisse?</h3>
         <p>
@@ -69,7 +69,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Il grafico sottostante mostra la verità sull'allenamento: le percentuali fisse (linea tratteggiata) ignorano la tua biologia. L'RPE (linea azzurra) naviga sopra le onde della tua performance giornaliera.
         </p>
 
-        <CourseImage src="Pic 2.png" alt="Fluttuazione della Performance" caption="Fluttuazione della performance: 1RM Teorico vs Reale." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-1-performance-fluctuation.webp" alt="Fluttuazione della Performance" caption="Fluttuazione della performance: 1RM Teorico vs Reale." />
 
         <h4 className="font-bold text-foreground mt-4">L'RPE nella pratica reale:</h4>
         <p>
@@ -104,14 +104,14 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Se ne ignori uno, la tua stima sarà imprecisa. Per dire "sono a RPE 9", devi avere conferme da tutti e quattro i sistemi.
         </p>
 
-        <CourseImage src="Pic 3.png" alt="Processo di percezione" caption="Dal segnale nervoso alla percezione dell'intensità." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-2-perception-process.webp" alt="Processo di percezione" caption="Dal segnale nervoso alla percezione dell'intensità." />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">Il Modello a 4 Sistemi</h3>
         <p>
           L'RPE non nasce da un solo segnale. È la zona di sovrapposizione tra quattro sistemi di fatica:
         </p>
 
-        <CourseImage src="Pic 4.png" alt="Venn Diagram 4 Sistemi" caption="I 4 sistemi di segnalazione dell'RPE." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-2-venn-diagram-4-systems.webp" alt="Venn Diagram 4 Sistemi" caption="I 4 sistemi di segnalazione dell'RPE." />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <div className="bg-card p-6 rounded-xl shadow-sm border border-sky-500/20">
@@ -155,12 +155,12 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           È fondamentale capire che il disagio è un segnale precoce: un primo avviso del sistema nervoso che la serie sta entrando in un livello di intensità rilevante.
         </p>
 
-        <CourseImage src="Pic 5.png" alt="Timeline del Disagio" caption="Evoluzione del disagio durante la serie." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-3-discomfort-timeline.webp" alt="Timeline del Disagio" caption="Evoluzione del disagio durante la serie." />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">Le 4 Facce del Disagio</h3>
         <p>Il disagio non è un fenomeno unico, ma la somma di diverse componenti che emergono simultaneamente:</p>
 
-        <CourseImage src="Pic 6.png" alt="Tipologie di Disagio" caption="Le componenti del disagio: Respiratorio, Muscolare, Sistemico, Mentale." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-3-discomfort-types.webp" alt="Tipologie di Disagio" caption="Le componenti del disagio: Respiratorio, Muscolare, Sistemico, Mentale." />
 
         <ul className="space-y-4 mt-4">
           <li className="flex items-start">
@@ -208,7 +208,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Non si tratta di errori didattici, ma di adattamenti fisiologici alla fatica neuromuscolare.
         </p>
 
-        <CourseImage src="Pic 7.png" alt="Grafico a Scalini Degradazione" caption="Fasi della degradazione tecnica." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-4-technical-degradation-stages.webp" alt="Grafico a Scalini Degradazione" caption="Fasi della degradazione tecnica." />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">Come si manifesta la degradazione</h3>
         <p>La degradazione tecnica non compare tutta insieme. Avanza in modo graduale, e riconoscere questi stadi è fondamentale:</p>
@@ -224,7 +224,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           È fondamentale distinguere tra un adattamento fisiologico (accettabile, parte della lotta) e un compenso dannoso (da evitare perché pericoloso).
         </p>
 
-        <CourseImage src="Pic 8.png" alt="Adattamento vs Compenso" caption="Differenza tra adattamento fisiologico e compenso dannoso." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-4-adaptation-vs-compensation.webp" alt="Adattamento vs Compenso" caption="Differenza tra adattamento fisiologico e compenso dannoso." />
 
         <div className="mt-6 space-y-4">
           <h4 className="font-bold text-foreground">Esempi pratici:</h4>
@@ -257,7 +257,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           <li>Accumulo di metaboliti che interferiscono con i ponti actina-miosina, rendendo la contrazione meno efficiente.</li>
         </ul>
 
-        <CourseImage src="Pic 9.png" alt="Curva Velocità" caption="Curva della perdita di velocità (Velocity Loss)." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-5-velocity-loss-curve.webp" alt="Curva Velocità" caption="Curva della perdita di velocità (Velocity Loss)." />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">Il fenomeno del "Grind"</h3>
         <p>
@@ -266,7 +266,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Il grind è tipico dell'RPE 9-10. Esiste un grind "sicuro" (controllato e tecnicamente stabile, tipico dei powerlifter) e un grind "da cedimento" (in cui la tecnica collassa per chiudere la rep). Riconoscere questa differenza è essenziale.
         </p>
 
-        <CourseImage src="Pic 10.png" alt="Il Grind" caption="Il fenomeno del Grind: alta intensità, bassa velocità." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-5-grind-phenomenon.webp" alt="Il Grind" caption="Il fenomeno del Grind: alta intensità, bassa velocità." />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">Come osservare la velocità senza strumenti</h3>
         <p>
@@ -305,14 +305,14 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           La letteratura mostra che la precisione migliora drasticamente dopo 12-20 settimane di allenamento specifico con RPE e adattamento neurologico. È un'abilità che va allenata.
         </p>
 
-        <CourseImage src="Pic 11.png" alt="Errore di Stima RIR" caption="Curva di apprendimento nella stima delle RIR." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-6-rir-estimation-error.webp" alt="Errore di Stima RIR" caption="Curva di apprendimento nella stima delle RIR." />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">Il Metodo dell'Ultima Ripetizione</h3>
         <p>
           Per stimare le RIR, devi analizzare l'ultima ripetizione eseguita. È lì che risiede la verità, perché è il momento di massimo accumulo di segnali di fatica.
         </p>
 
-        <CourseImage src="Pic 12.png" alt="Analisi Baseline vs Verità" caption="Confronto tra fluidità iniziale e fatica finale." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-6-baseline-vs-fatigue.webp" alt="Analisi Baseline vs Verità" caption="Confronto tra fluidità iniziale e fatica finale." />
 
         <div className="mt-4">
           <ul className="list-disc pl-5 space-y-2 marker:text-sky-400">
@@ -339,7 +339,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Valutare l'RPE non deve essere un'ipotesi vaga fatta mentre sei sotto sforzo. È un processo analitico che avviene in due tempi distinti: <strong>Osservazione</strong> (durante l'esecuzione) e <strong>Giudizio</strong> (subito dopo aver posato il peso).
         </p>
 
-        <CourseImage src="Pic 13.png" alt="Timeline Valutazione" caption="Fasi della valutazione: Osservazione vs Giudizio." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-7-evaluation-timeline.webp" alt="Timeline Valutazione" caption="Fasi della valutazione: Osservazione vs Giudizio." />
 
         <p>
           Mai decidere l'RPE a metà serie: la paura o il dolore momentaneo ti faranno sottostimare le tue capacità. Solo a mente lucida, nei secondi successivi al termine della serie, emetti il verdetto.
@@ -350,7 +350,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Ogni volta che finisci una serie importante, scorri mentalmente questa lista in ordine. Non puoi saltare i passaggi.
         </p>
 
-        <CourseImage src="Pic 14.png" alt="Sequenza di Valutazione" caption="Sequenza operativa per stimare l'RPE." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-7-checklist-sequence.webp" alt="Sequenza di Valutazione" caption="Sequenza operativa per stimare l'RPE." />
 
         <ol className="list-decimal pl-5 space-y-4 mt-4 marker:text-sky-400 marker:font-bold">
           <li><strong>Disagio:</strong> Come mi sentivo? Era panico o solo fatica? Serve per capire se siamo entrati nella zona allenante e per orientarsi.</li>
@@ -383,7 +383,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Devi aspettare la "Finestra di Normalizzazione" (5-10 minuti dopo la fine). La pausa filtra il "rumore" della fatica acuta e permette di percepire la vera fatica sistemica residua.
         </p>
 
-        <CourseImage src="Pic 15.png" alt="Timeline Session RPE" caption="Tempistica di valutazione del Session RPE." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-8-session-rpe-timeline.webp" alt="Timeline Session RPE" caption="Tempistica di valutazione del Session RPE." />
 
         <div className="bg-sky-500/5 p-5 mt-6 rounded-lg border border-sky-500/20">
           <h4 className="font-bold text-foreground mb-2">Esempio Pratico:</h4>
@@ -414,7 +414,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Per questo usiamo la scala <strong>CR10 di Borg</strong> modificata.
         </p>
 
-        <CourseImage src="Pic 16.png" alt="Tabella Conversione Cardio" caption="Tabella di conversione Cardio: CR10 e Talk Test." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-9-cardio-cr10-table.webp" alt="Tabella Conversione Cardio" caption="Tabella di conversione Cardio: CR10 e Talk Test." />
 
         <div className="space-y-4 mt-6">
           <div className="bg-sky-500/5 p-4 rounded border border-sky-500/20">
@@ -458,7 +458,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Usa questo albero decisionale.
         </p>
 
-        <CourseImage src="Pic 17.png" alt="Albero Decisionale Autoregolazione" caption="Albero decisionale per l'autoregolazione del carico." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-10-autoregulation-decision-tree.webp" alt="Albero Decisionale Autoregolazione" caption="Albero decisionale per l'autoregolazione del carico." />
 
         <div className="mt-6 border-l-4 border-sky-500 pl-4 py-2 bg-sky-500/5 rounded-r-lg">
           <p className="font-bold text-foreground">Regola d'oro dell'Autoregolazione:</p>
@@ -472,7 +472,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           <strong> Accumulo</strong> (RPE 6-7), <strong>Progressione</strong> (RPE 7.5-8.5), <strong>Picco</strong> (RPE 9+), <strong>Scarico</strong> (RPE 4-6).
         </p>
 
-        <CourseImage src="Pic 18.png" alt="Grafico Mesociclo" caption="Andamento dell'intensità nel mesociclo." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-10-mesocycle-wave.webp" alt="Grafico Mesociclo" caption="Andamento dell'intensità nel mesociclo." />
       </div>
     ),
     insights: [
@@ -491,7 +491,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Gli errori non sono un ostacolo, ma la materia prima da cui nasce la precisione. Le cause sono molteplici: confusione tra segnali, bias cognitivi, variabilità emotiva.
         </p>
 
-        <CourseImage src="Pic 19.png" alt="Tabella Problema Soluzione" caption="Errori comuni e soluzioni rapide." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-11-common-errors-table.webp" alt="Tabella Problema Soluzione" caption="Errori comuni e soluzioni rapide." />
 
         <h3 className="text-xl font-bold text-foreground mt-6">Il Loop di Correzione</h3>
         <p>
@@ -499,7 +499,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           <strong> Rivedi</strong> l'ultima rep, <strong>Confronta</strong> con la baseline, <strong>Filtra</strong> il bruciore, <strong>Identifica</strong> i compensi, <strong>Aggiorna</strong> la stima.
         </p>
 
-        <CourseImage src="Pic 20.png" alt="Loop di Correzione" caption="Ciclo di correzione della stima RPE." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-11-correction-loop.webp" alt="Loop di Correzione" caption="Ciclo di correzione della stima RPE." />
 
         <div className="space-y-6 mt-8">
           <h3 className="text-xl font-bold text-foreground">Analisi Approfondita degli Errori</h3>
@@ -554,7 +554,7 @@ export const rpeLessonContent: Record<string, LessonContent> = {
           Sei alla fine della serie e non sai che RPE assegnare? Segui questo schema logico.
         </p>
 
-        <CourseImage src="Pic 21.png" alt="Albero Decisionale Fine Serie" caption="Schema decisionale post-serie." />
+        <CourseImage src="/images/courses/rpe/rpe-lesson-12-post-set-decision-tree.webp" alt="Albero Decisionale Fine Serie" caption="Schema decisionale post-serie." />
 
         <h3 className="text-xl font-bold text-foreground mt-8 mb-4">FAQ Rapide</h3>
         <p>Soluzioni immediate ai problemi più comuni.</p>
