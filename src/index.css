@@ -4,54 +4,54 @@
 
 @layer base {
   :root {
-    --background: 210 20% 97%;
-    --foreground: 215 25% 15%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 0 0% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 0 0% 13%;
 
-    --primary: 38 92% 50%;
+    --primary: 350 48% 30%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 15% 93%;
-    --secondary-foreground: 215 20% 40%;
+    --secondary: 350 12% 94%;
+    --secondary-foreground: 350 20% 35%;
 
-    --muted: 210 15% 95%;
-    --muted-foreground: 215 15% 50%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 210 15% 93%;
-    --accent-foreground: 215 25% 15%;
+    --accent: 350 12% 94%;
+    --accent-foreground: 0 0% 13%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 88%;
-    --input: 214 20% 88%;
-    --ring: 38 92% 50%;
+    --border: 0 0% 90%;
+    --input: 0 0% 88%;
+    --ring: 350 48% 30%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Category accent colors */
+    /* Category accent colors — PRESERVED */
     --cat-nutrition: 152 60% 38%;
     --cat-training: 199 89% 42%;
     --cat-supplements: 263 70% 50%;
     --cat-physiology: 350 65% 50%;
 
     /* Glow effects */
-    --glow-gold: 0 0 40px hsl(38 92% 50% / 0.12);
-    --glow-card: 0 4px 20px hsl(220 40% 50% / 0.06);
+    --glow-gold: 0 0 30px hsl(350 48% 30% / 0.10);
+    --glow-card: 0 2px 12px hsl(0 0% 0% / 0.04);
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 215 20% 40%;
-    --sidebar-primary: 38 92% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 15% 95%;
-    --sidebar-accent-foreground: 215 25% 15%;
-    --sidebar-border: 214 20% 88%;
-    --sidebar-ring: 38 92% 50%;
+    --sidebar-background: 350 48% 25%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 350 48% 25%;
+    --sidebar-accent: 350 40% 32%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 350 30% 35%;
+    --sidebar-ring: 0 0% 100%;
   }
 }
 
@@ -72,8 +72,15 @@
   .card-glow-hover:hover {
     box-shadow: var(--glow-gold);
   }
+  .text-gradient-brand {
+    background: linear-gradient(135deg, hsl(350 48% 30%), hsl(350 55% 42%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  /* Keep legacy alias working */
   .text-gradient-gold {
-    background: linear-gradient(135deg, hsl(38 92% 50%), hsl(30 80% 42%));
+    background: linear-gradient(135deg, hsl(350 48% 30%), hsl(350 55% 42%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
