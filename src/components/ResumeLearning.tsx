@@ -55,57 +55,57 @@ const ResumeLearning = () => {
   const totalLessons = lastCourse?.totalLessons || course?.totalLessons || 12;
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-6">
       <div>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-          Bentornato, <span className="text-gradient-gold">{displayName}</span>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+          Bentornato, <span className="text-gradient-brand">{displayName}</span>
         </h1>
-        <p className="mt-2 text-muted-foreground text-base">Riprendi da dove avevi lasciato.</p>
+        <p className="mt-1.5 text-muted-foreground text-sm">Riprendi da dove avevi lasciato.</p>
       </div>
 
       <div
-        className="group relative overflow-hidden rounded-3xl bg-card border-2 border-primary/15 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-300 cursor-pointer"
+        className="group relative overflow-hidden rounded-xl bg-card border border-border hover:shadow-md transition-all duration-200 cursor-pointer"
         onClick={() => navigate(`/course/${courseId}`)}
       >
         {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.04] via-transparent to-primary/[0.02]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.03] via-transparent to-transparent" />
 
-        <div className="relative z-10 flex flex-col justify-end p-8 md:p-10 min-h-[260px]">
-          <div className="absolute top-6 right-6 md:top-8 md:right-8">
-            <span className="rounded-full bg-primary/10 px-3.5 py-1.5 text-xs font-bold text-primary border border-primary/15 tracking-wide">
+        <div className="relative z-10 flex flex-col justify-end p-6 md:p-8 min-h-[200px]">
+          <div className="absolute top-5 right-5 md:top-6 md:right-6">
+            <span className="rounded-md bg-primary/8 px-2.5 py-1 text-[11px] font-semibold text-primary border border-primary/10 tracking-wide">
               {course?.category || "Allenamento"}
             </span>
           </div>
 
-          <div className="space-y-5 max-w-xl">
+          <div className="space-y-4 max-w-xl">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground mb-2">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground mb-1.5">
                 Riprendi a Studiare
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+              <h2 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
                 {course?.title || "Corso RPE — La Guida Definitiva"}
               </h2>
-              <p className="mt-1.5 text-sm text-muted-foreground">
+              <p className="mt-1 text-sm text-muted-foreground">
                 Lezione {nextLesson} di {totalLessons}
               </p>
             </div>
 
             {/* Progress bar */}
-            <div className="flex items-center gap-4">
-              <div className="flex-1 rounded-full h-2.5 bg-secondary/80 overflow-hidden">
+            <div className="flex items-center gap-3">
+              <div className="flex-1 rounded-full h-2 bg-muted overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary transition-all duration-500"
                   style={{ width: `${Math.max(progress, 2)}%` }}
                 />
               </div>
-              <span className="text-sm font-bold text-primary tabular-nums">{progress}%</span>
+              <span className="text-xs font-semibold text-primary tabular-nums">{progress}%</span>
             </div>
 
             <Button
-              size="lg"
-              className="gap-2.5 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 font-bold text-sm px-6"
+              size="default"
+              className="gap-2 rounded-lg font-semibold text-sm px-5"
             >
-              <Play className="h-4 w-4" />
+              <Play className="h-3.5 w-3.5" />
               {progress > 0 ? "Riprendi Corso" : "Inizia Corso"}
             </Button>
           </div>
