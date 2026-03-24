@@ -18,7 +18,7 @@ export const COURSE_META: Record<string, CourseMeta> = {
     borderClass: "border-cat-training/25",
   },
   "cosa-devo-mangiare": {
-    title: "Cosa Devo Mangiare?",
+    title: "Nutrizione: Scegliere i cibi e gestire le porzioni",
     totalLessons: 8,
     category: "Nutrizione",
     colorClass: "text-cat-nutrition",
