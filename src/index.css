@@ -44,13 +44,13 @@
     --glow-gold: 0 0 30px hsl(204 66% 39% / 0.10);
     --glow-card: 0 2px 12px hsl(0 0% 0% / 0.04);
 
-    --sidebar-background: 350 48% 25%;
+    --sidebar-background: 204 66% 25%;
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 350 48% 25%;
-    --sidebar-accent: 350 40% 32%;
+    --sidebar-primary-foreground: 204 66% 25%;
+    --sidebar-accent: 204 50% 32%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 350 30% 35%;
+    --sidebar-border: 204 40% 35%;
     --sidebar-ring: 0 0% 100%;
   }
 }
