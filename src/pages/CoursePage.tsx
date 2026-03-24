@@ -31,7 +31,7 @@ const coursesData: Record<
     lessons: nutritionLessons,
   },
   integratori: {
-    title: "Quali integratori usare?",
+    title: "Integratori: La verità scientifica oltre il marketing",
     themeColor: "violet",
     lessons: integratoriLessons,
   },
