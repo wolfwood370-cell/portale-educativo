@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { COURSE_META } from "@/lib/course-metadata";
+import { cn } from "@/lib/utils";
 
 const ResumeLearning = () => {
   const navigate = useNavigate();
@@ -54,6 +55,32 @@ const ResumeLearning = () => {
   const nextLesson = lastCourse?.nextLesson || 1;
   const totalLessons = lastCourse?.totalLessons || course?.totalLessons || 12;
 
+  // Map course category color classes to inline-friendly accent styles
+  const accentMap: Record<string, { bg: string; text: string; border: string }> = {
+    "text-cat-training": {
+      bg: "bg-cat-training",
+      text: "text-cat-training",
+      border: "border-cat-training/20",
+    },
+    "text-cat-nutrition": {
+      bg: "bg-cat-nutrition",
+      text: "text-cat-nutrition",
+      border: "border-cat-nutrition/20",
+    },
+    "text-cat-supplements": {
+      bg: "bg-cat-supplements",
+      text: "text-cat-supplements",
+      border: "border-cat-supplements/20",
+    },
+    "text-cat-physiology": {
+      bg: "bg-cat-physiology",
+      text: "text-cat-physiology",
+      border: "border-cat-physiology/20",
+    },
+  };
+
+  const accent = accentMap[course?.colorClass || "text-cat-training"] || accentMap["text-cat-training"];
+
   return (
     <section className="space-y-6">
       <div>
@@ -72,7 +99,10 @@ const ResumeLearning = () => {
 
         <div className="relative z-10 flex flex-col justify-end p-6 md:p-8 min-h-[200px]">
           <div className="absolute top-5 right-5 md:top-6 md:right-6">
-            <span className="rounded-md bg-primary/8 px-2.5 py-1 text-[11px] font-semibold text-primary border border-primary/10 tracking-wide">
+            <span className={cn(
+              "rounded-md px-2.5 py-1 text-[11px] font-semibold tracking-wide border",
+              accent.text, accent.border, "bg-opacity-8"
+            )}>
               {course?.category || "Allenamento"}
             </span>
           </div>
@@ -94,16 +124,16 @@ const ResumeLearning = () => {
             <div className="flex items-center gap-3">
               <div className="flex-1 rounded-full h-2 bg-muted overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-primary transition-all duration-500"
+                  className={cn("h-full rounded-full transition-all duration-500", accent.bg)}
                   style={{ width: `${Math.max(progress, 2)}%` }}
                 />
               </div>
-              <span className="text-xs font-semibold text-primary tabular-nums">{progress}%</span>
+              <span className={cn("text-xs font-semibold tabular-nums", accent.text)}>{progress}%</span>
             </div>
 
             <Button
               size="default"
-              className="gap-2 rounded-lg font-semibold text-sm px-5"
+              className={cn("gap-2 rounded-lg font-semibold text-sm px-5 text-white", accent.bg, "hover:opacity-90")}
             >
               <Play className="h-3.5 w-3.5" />
               {progress > 0 ? "Riprendi Corso" : "Inizia Corso"}
