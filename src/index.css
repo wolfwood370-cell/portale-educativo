@@ -13,16 +13,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 13%;
 
-    --primary: 350 48% 30%;
+    --primary: 204 66% 39%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 350 12% 94%;
-    --secondary-foreground: 350 20% 35%;
+    --secondary: 204 12% 94%;
+    --secondary-foreground: 204 20% 35%;
 
     --muted: 0 0% 95%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 350 12% 94%;
+    --accent: 204 12% 94%;
     --accent-foreground: 0 0% 13%;
 
     --destructive: 0 84% 60%;
@@ -30,7 +30,7 @@
 
     --border: 0 0% 90%;
     --input: 0 0% 88%;
-    --ring: 350 48% 30%;
+    --ring: 204 66% 39%;
 
     --radius: 0.5rem;
 
@@ -41,16 +41,16 @@
     --cat-physiology: 350 65% 50%;
 
     /* Glow effects */
-    --glow-gold: 0 0 30px hsl(350 48% 30% / 0.10);
+    --glow-gold: 0 0 30px hsl(204 66% 39% / 0.10);
     --glow-card: 0 2px 12px hsl(0 0% 0% / 0.04);
 
-    --sidebar-background: 350 48% 25%;
+    --sidebar-background: 204 66% 25%;
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 350 48% 25%;
-    --sidebar-accent: 350 40% 32%;
+    --sidebar-primary-foreground: 204 66% 25%;
+    --sidebar-accent: 204 50% 32%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 350 30% 35%;
+    --sidebar-border: 204 40% 35%;
     --sidebar-ring: 0 0% 100%;
   }
 }
@@ -73,14 +73,14 @@
     box-shadow: var(--glow-gold);
   }
   .text-gradient-brand {
-    background: linear-gradient(135deg, hsl(350 48% 30%), hsl(350 55% 42%));
+    background: linear-gradient(135deg, hsl(204 66% 39%), hsl(204 70% 48%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
   /* Keep legacy alias working */
   .text-gradient-gold {
-    background: linear-gradient(135deg, hsl(350 48% 30%), hsl(350 55% 42%));
+    background: linear-gradient(135deg, hsl(204 66% 39%), hsl(204 70% 48%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
