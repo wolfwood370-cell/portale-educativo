@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { COURSE_META } from "@/lib/course-metadata";
+import { cn } from "@/lib/utils";
 
 const ResumeLearning = () => {
   const navigate = useNavigate();
