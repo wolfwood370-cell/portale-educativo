@@ -41,7 +41,7 @@
     --cat-physiology: 350 65% 50%;
 
     /* Glow effects */
-    --glow-gold: 0 0 30px hsl(350 48% 30% / 0.10);
+    --glow-gold: 0 0 30px hsl(204 66% 39% / 0.10);
     --glow-card: 0 2px 12px hsl(0 0% 0% / 0.04);
 
     --sidebar-background: 350 48% 25%;
