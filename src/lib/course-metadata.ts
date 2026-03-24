@@ -34,7 +34,7 @@ export const COURSE_META: Record<string, CourseMeta> = {
     borderClass: "border-cat-supplements/25",
   },
   "cellulite-mini-corso": {
-    title: "Cellulite — Il Mini Corso",
+    title: "Cellulite: Sconfiggere l'infiammazione e gli inestetismi",
     totalLessons: 7,
     category: "Fisiologia",
     colorClass: "text-cat-physiology",

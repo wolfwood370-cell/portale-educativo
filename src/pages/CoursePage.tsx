@@ -36,7 +36,7 @@ const coursesData: Record<
     lessons: integratoriLessons,
   },
   "cellulite-mini-corso": {
-    title: "Cellulite — Il Mini Corso",
+    title: "Cellulite: Sconfiggere l'infiammazione e gli inestetismi",
     themeColor: "rose",
     lessons: celluliteLessons,
   },
