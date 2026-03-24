@@ -72,7 +72,7 @@ const Auth = () => {
             <GraduationCap className="h-7 w-7 text-primary-foreground" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground">
-            Elite Coaching Portal
+            NC Elite Academy
           </h1>
           <p className="text-sm text-muted-foreground">
             {isLogin ? "Accedi al tuo account" : "Crea il tuo account"}

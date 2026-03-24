@@ -19,7 +19,7 @@ const DashboardHeader = () => {
             <span className="text-sm font-bold text-primary-foreground">E</span>
           </div>
           <span className="text-base font-semibold tracking-tight text-foreground">
-            Elite Coaching Portal
+            NC Elite Academy
           </span>
         </div>
 
