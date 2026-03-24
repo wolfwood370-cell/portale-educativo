@@ -26,7 +26,7 @@ const coursesData: Record<
     lessons: rpeLessons,
   },
   "cosa-devo-mangiare": {
-    title: "Cosa Devo Mangiare?",
+    title: "Nutrizione: Scegliere i cibi e gestire le porzioni",
     themeColor: "emerald",
     lessons: nutritionLessons,
   },
