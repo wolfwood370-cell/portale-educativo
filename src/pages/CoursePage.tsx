@@ -21,7 +21,7 @@ const coursesData: Record<
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
 > = {
   "rpe-mastery": {
-    title: "Corso RPE — La Guida Definitiva",
+    title: "RPE: La scienza dell'intensità e dell'autoregolazione",
     themeColor: "sky",
     lessons: rpeLessons,
   },
