@@ -21,22 +21,22 @@ const coursesData: Record<
   { title: string; themeColor: ThemeColor; lessons: Lesson[] }
 > = {
   "rpe-mastery": {
-    title: "Corso RPE — La Guida Definitiva",
+    title: "RPE: La scienza dell'intensità e dell'autoregolazione",
     themeColor: "sky",
     lessons: rpeLessons,
   },
   "cosa-devo-mangiare": {
-    title: "Cosa Devo Mangiare?",
+    title: "Nutrizione: Scegliere i cibi e gestire le porzioni",
     themeColor: "emerald",
     lessons: nutritionLessons,
   },
   integratori: {
-    title: "Quali integratori usare?",
+    title: "Integratori: La verità scientifica oltre il marketing",
     themeColor: "violet",
     lessons: integratoriLessons,
   },
   "cellulite-mini-corso": {
-    title: "Cellulite — Il Mini Corso",
+    title: "Cellulite: Sconfiggere l'infiammazione e gli inestetismi",
     themeColor: "rose",
     lessons: celluliteLessons,
   },

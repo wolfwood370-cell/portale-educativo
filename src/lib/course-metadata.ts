@@ -10,7 +10,7 @@ export interface CourseMeta {
 
 export const COURSE_META: Record<string, CourseMeta> = {
   "rpe-mastery": {
-    title: "Corso RPE — La Guida Definitiva",
+    title: "RPE: La scienza dell'intensità e dell'autoregolazione",
     totalLessons: 12,
     category: "Allenamento",
     colorClass: "text-cat-training",
@@ -18,7 +18,7 @@ export const COURSE_META: Record<string, CourseMeta> = {
     borderClass: "border-cat-training/25",
   },
   "cosa-devo-mangiare": {
-    title: "Cosa Devo Mangiare?",
+    title: "Nutrizione: Scegliere i cibi e gestire le porzioni",
     totalLessons: 8,
     category: "Nutrizione",
     colorClass: "text-cat-nutrition",
@@ -26,7 +26,7 @@ export const COURSE_META: Record<string, CourseMeta> = {
     borderClass: "border-cat-nutrition/25",
   },
   integratori: {
-    title: "Quali integratori usare?",
+    title: "Integratori: La verità scientifica oltre il marketing",
     totalLessons: 19,
     category: "Integratori",
     colorClass: "text-cat-supplements",
@@ -34,7 +34,7 @@ export const COURSE_META: Record<string, CourseMeta> = {
     borderClass: "border-cat-supplements/25",
   },
   "cellulite-mini-corso": {
-    title: "Cellulite — Il Mini Corso",
+    title: "Cellulite: Sconfiggere l'infiammazione e gli inestetismi",
     totalLessons: 7,
     category: "Fisiologia",
     colorClass: "text-cat-physiology",
