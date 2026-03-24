@@ -26,7 +26,7 @@ export const COURSE_META: Record<string, CourseMeta> = {
     borderClass: "border-cat-nutrition/25",
   },
   integratori: {
-    title: "Quali integratori usare?",
+    title: "Integratori: La verità scientifica oltre il marketing",
     totalLessons: 19,
     category: "Integratori",
     colorClass: "text-cat-supplements",
