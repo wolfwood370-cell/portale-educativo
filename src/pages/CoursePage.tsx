@@ -199,9 +199,8 @@ const CoursePage = () => {
               </span>
               {calcConfig && (
                 <Button
-                  variant="outline"
                   size="sm"
-                  className={cn("rounded-xl border-border/60", tc.text, tc.hoverBgSubtle)}
+                  className={cn("rounded-xl text-white font-semibold border-0", tc.bg, tc.bgHover, tc.shadow)}
                   onClick={() => setShowCalculator(true)}
                 >
                   <calcConfig.icon className="h-3.5 w-3.5 mr-1.5" />
