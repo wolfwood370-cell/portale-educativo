@@ -10,7 +10,7 @@ export interface CourseMeta {
 
 export const COURSE_META: Record<string, CourseMeta> = {
   "rpe-mastery": {
-    title: "Corso RPE — La Guida Definitiva",
+    title: "RPE: La scienza dell'intensità e dell'autoregolazione",
     totalLessons: 12,
     category: "Allenamento",
     colorClass: "text-cat-training",
