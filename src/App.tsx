@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import CoursePage from "./pages/CoursePage";
 import CoachDashboard from "./pages/CoachDashboard";
 import Auth from "./pages/Auth";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
