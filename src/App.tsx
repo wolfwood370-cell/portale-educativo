@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import CoursePage from "./pages/CoursePage";
 import CoachDashboard from "./pages/CoachDashboard";
 import Auth from "./pages/Auth";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/auth" element={<Auth />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
             <Route path="/course/:id" element={<ProtectedRoute allowedRoles={["student", "coach"]}><CoursePage /></ProtectedRoute>} />
             <Route path="/coach" element={<ProtectedRoute allowedRoles={["coach"]}><CoachDashboard /></ProtectedRoute>} />
